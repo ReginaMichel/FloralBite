@@ -58,6 +58,7 @@
     </dependencies>
 
     <build>
+        <finalName>FloralBite</finalName>
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
