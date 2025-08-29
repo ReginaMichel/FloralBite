@@ -14,10 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 @SuppressWarnings("java:S4502")
 public class SecurityConfig {
+
     @Value("${app.url}")
     String appUrl;
 
-    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomOidcUserService customOidcUserService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -25,12 +26,13 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/api/admin").hasAuthority("ADMIN")
-                        .requestMatchers("/api/auth").authenticated()
+                        .requestMatchers("/api/auth/me").authenticated()
                         .anyRequest().permitAll())
-                .logout(l -> l.logoutSuccessUrl(appUrl))
-                .oauth2Login(o -> o
-                        .userInfoEndpoint(ui -> ui.userService(customOAuth2UserService))
-                        .defaultSuccessUrl(appUrl+"login"));
+                .logout(l -> l.logoutSuccessUrl(appUrl + "login"))
+                .oauth2Login(o -> {
+                    o.userInfoEndpoint(ui -> ui.oidcUserService(customOidcUserService));
+                    o.defaultSuccessUrl(appUrl + "login");
+                });
 
         return http.build();
     }
