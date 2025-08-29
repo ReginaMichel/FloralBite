@@ -9,6 +9,13 @@ export default function LoginPage() {
         window.open(host + "/oauth2/authorization/google", "_self")
     }
 
+    function logout() {
+        const host:string = window.location.host === "localhost:5173"
+            ? "http://localhost:8080"
+            : window.location.origin;
+        window.open(host + "/logout", "_self")
+    }
+
     const [user, setUser] = useState<string | undefined | null>(undefined);
 
     const loadUser = () => {
@@ -30,6 +37,7 @@ export default function LoginPage() {
             <h2 className={"placeholder"}>Du bist erfolgreich auf der Login-Seite gelandet. Bitte klicke auf den
             Button hier, um dich über deinen Google-Account einzuloggen:</h2>
             <button onClick={login}>Anmelden</button>
+            <button onClick={logout}>Abmelden</button>
         </div>
     );
 }
