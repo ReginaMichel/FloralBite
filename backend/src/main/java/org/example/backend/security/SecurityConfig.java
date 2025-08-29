@@ -20,6 +20,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/api/admin").hasAuthority("ADMIN")
+                        .requestMatchers("/api/auth").authenticated()
                         .anyRequest().permitAll())
                 .logout(l -> l.logoutSuccessUrl(appUrl))
                 .oauth2Login(o -> o
