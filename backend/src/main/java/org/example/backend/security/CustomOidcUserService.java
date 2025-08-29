@@ -30,7 +30,7 @@ public class CustomOidcUserService extends OidcUserService {
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
-        OidcUser oidcUser = super.loadUser(userRequest);
+        OidcUser oidcUser = fetchOidcUser(userRequest);
 
         System.out.println("🔐 OIDC User Info: " + oidcUser.getAttributes());
 
@@ -43,5 +43,9 @@ public class CustomOidcUserService extends OidcUserService {
                 oidcUser.getUserInfo(),
                 "sub"
         );
+    }
+
+    protected OidcUser fetchOidcUser(OidcUserRequest userRequest) {
+        return super.loadUser(userRequest);
     }
 }
