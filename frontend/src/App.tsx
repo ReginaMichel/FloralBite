@@ -1,12 +1,13 @@
 import './App.css'
 import PlaceHolderPage from "./pages/PlaceholderPage.tsx"
+import {Route, Routes} from "react-router-dom";
 
 function App() {
 
   return (
-    <>
-      <PlaceHolderPage />
-    </>
+    <Routes>
+      <Route path="" element={<PlaceHolderPage />}/>
+    </Routes>
   )
 }
 
