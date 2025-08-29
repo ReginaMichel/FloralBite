@@ -12,6 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@SuppressWarnings("java:S4502")
 public class SecurityConfig {
     @Value("${app.url}")
     String appUrl;
