@@ -18,15 +18,9 @@ public class AuthController {
 
     private final AdminUserRepo userRepo;
 
-    @GetMapping
-    public AdminUser getUser(@AuthenticationPrincipal OAuth2User user) {
-        return userRepo.findById(user.getName())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-    }
-
     @GetMapping("/me")
-    public String getUserName(@AuthenticationPrincipal OAuth2User user) {
-        return Objects.requireNonNull(user.getAttribute("sub")).toString()
-                +Objects.requireNonNull(user.getAttribute("given_name"));
+    public AdminUser getMe(@AuthenticationPrincipal OAuth2User user) {
+        return userRepo.findById(user.getAttribute("sub"))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 }
