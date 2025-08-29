@@ -21,6 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a -> a
                         .requestMatchers("/api/admin").hasAuthority("ADMIN")
                         .anyRequest().permitAll())
+                .logout(l -> l.logoutSuccessUrl(appUrl))
                 .oauth2Login(o -> o
                         .defaultSuccessUrl(appUrl+"admin"));
 
