@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .anyRequest().permitAll())
                 .logout(l -> l.logoutSuccessUrl(appUrl))
                 .oauth2Login(o -> o
-                        .defaultSuccessUrl(appUrl+"admin"));
+                        .defaultSuccessUrl(appUrl+"login"));
 
         return http.build();
     }
