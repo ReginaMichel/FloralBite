@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function LoginPage() {
 
@@ -9,10 +9,15 @@ export default function LoginPage() {
         window.open(host + "/oauth2/authorization/google", "_self")
     }
 
+    const [user, setUser] = useState<string | undefined | null>(undefined);
+
     const loadUser = () => {
         axios.get("/api/auth/me")
-            .then((response) => console.log(response))
-            .catch(() => console.log("error caught."));
+            .then((response) => {
+                console.log(response.data);
+                setUser(response.data);
+            })
+            .catch(() => setUser(null));
     }
 
     useEffect(() => {loadUser()}, []);
