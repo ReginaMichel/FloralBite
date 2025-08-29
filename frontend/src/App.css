@@ -44,6 +44,13 @@ img.placeholder {
   max-width: 47%;
 }
 
-h1.placeholder, h2.placeholder {
+h1.placeholder, h2.placeholder, h3.placeholder {
   color: #254038;
+}
+
+button.placeholder {
+  background-color: #66966D;
+  color: #254038;
+  font-weight: bold;
+  font-size: 1.3em;
 }
