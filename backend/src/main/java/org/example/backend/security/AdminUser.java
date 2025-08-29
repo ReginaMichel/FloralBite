@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "adminUser")
 public record AdminUser(
         @Id String id,
-        String username,
+        String email,
         String firstName,
         String role) {
 }
