@@ -28,10 +28,10 @@ public class SecurityConfig {
                         .requestMatchers("/api/admin").hasAuthority("ADMIN")
                         .requestMatchers("/api/auth/me").authenticated()
                         .anyRequest().permitAll())
-                .logout(l -> l.logoutSuccessUrl(appUrl + "login"))
+                .logout(l -> l.logoutSuccessUrl(appUrl + "adminlogin"))
                 .oauth2Login(o -> {
                     o.userInfoEndpoint(ui -> ui.oidcUserService(customOidcUserService));
-                    o.defaultSuccessUrl(appUrl + "login");
+                    o.defaultSuccessUrl(appUrl + "admin");
                 });
 
         return http.build();
