@@ -22,7 +22,7 @@ public class CustomOidcUserService extends OidcUserService {
                 .id(oidcUser.getSubject())
                 .email(oidcUser.getEmail())
                 .firstName((String) oidcUser.getAttributes().get("given_name"))
-                .role("ADMIN")
+                .role("NEW_USER")
                 .build();
         userRepo.save(newUser);
         return newUser;
@@ -31,8 +31,6 @@ public class CustomOidcUserService extends OidcUserService {
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
         OidcUser oidcUser = fetchOidcUser(userRequest);
-
-        System.out.println("🔐 OIDC User Info: " + oidcUser.getAttributes());
 
         String id = oidcUser.getSubject();
         AdminUser adminUser = userRepo.findById(id).orElseGet(() -> createAdminUser(oidcUser));
