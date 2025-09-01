@@ -13,5 +13,4 @@ export default function ProtectedRoute(props: Readonly<ProtectedRouteProps>) {
     return (
         props.user?.role === "ADMIN" ? <Outlet/> : <Navigate to = {"/"} />
     )
-
 }
