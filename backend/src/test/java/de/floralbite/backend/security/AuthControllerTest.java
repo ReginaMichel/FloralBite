@@ -1,4 +1,4 @@
-package org.example.backend.security;
+package de.floralbite.backend.security;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

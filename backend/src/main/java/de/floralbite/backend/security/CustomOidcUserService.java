@@ -1,4 +1,4 @@
-package org.example.backend.security;
+package de.floralbite.backend.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
