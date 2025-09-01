@@ -15,7 +15,6 @@ function App() {
     async function loadUser(){
         await axios.get("/api/auth/me")
             .then((response) => {
-                console.log(response.data);
                 setUser(response.data);
             })
             .catch((error) => {
