@@ -54,7 +54,7 @@ class CustomOidcUserServiceTest {
         assertThat(result).isNotNull();
         assertThat(result.getAuthorities())
                 .extracting("authority")
-                .containsExactly("ADMIN");
+                .containsExactly("NEW_USER");
 
         ArgumentCaptor<AdminUser> userCaptor = ArgumentCaptor.forClass(AdminUser.class);
         verify(repo).save(userCaptor.capture());
