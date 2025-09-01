@@ -69,6 +69,11 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>de.neuefische.java</groupId>
+            <artifactId>spring-boot-starter-fallback-page</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
