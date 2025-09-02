@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import ProtectedRoute from "./security/ProtectedRoute.tsx";
 import type {UserModel} from "./models/UserModel.ts";
+import Footer from "./components/Footer.tsx";
 
 function App() {
 
@@ -29,14 +30,17 @@ function App() {
     }, []);
 
   return (
-    <Routes>
-      <Route path="" element={<PlaceHolderPage />}/>
-      <Route path="/adminlogin" element={<LoginPage />}/>
-      <Route element = {<ProtectedRoute user={user}/>}>
-          <Route path="/admin" element={<AdminPage user={user}/>}/>
-      </Route>
-      <Route path="/impressum" element={<ImpressumPage />}/>
-    </Routes>
+    <>
+        <Routes>
+            <Route path="" element={<PlaceHolderPage />}/>
+            <Route path="/adminlogin" element={<LoginPage />}/>
+            <Route element = {<ProtectedRoute user={user}/>}>
+                <Route path="/admin" element={<AdminPage user={user}/>}/>
+            </Route>
+            <Route path="/impressum" element={<ImpressumPage />}/>
+        </Routes>
+        <Footer />
+    </>
   )
 }
 
