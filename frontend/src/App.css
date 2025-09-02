@@ -16,7 +16,7 @@ img.placeholder {
   max-width: 47%;
 }
 
-h1.placeholder, h2.placeholder, h3.placeholder {
+h1, h2, h3, p {
   color: #254038;
 }
 
@@ -25,4 +25,8 @@ button.placeholder {
   color: #254038;
   font-weight: bold;
   font-size: 1.3em;
+}
+
+div.note {
+  margin-bottom: 4em;
 }

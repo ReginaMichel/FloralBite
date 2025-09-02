@@ -2,6 +2,7 @@ import './App.css';
 import PlaceHolderPage from "./pages/PlaceholderPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
+import ImpressumPage from "./pages/ImpressumPage.tsx";
 import {Route, Routes} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -34,6 +35,7 @@ function App() {
       <Route element = {<ProtectedRoute user={user}/>}>
           <Route path="/admin" element={<AdminPage user={user}/>}/>
       </Route>
+      <Route path="/impressum" element={<ImpressumPage />}/>
     </Routes>
   )
 }
