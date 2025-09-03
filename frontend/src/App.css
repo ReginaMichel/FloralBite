@@ -47,6 +47,9 @@ header {
   height: 10rem;
   width: 100%;
   margin-bottom: 4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 header.header_01 {
   background-image: url("/assets/header_01.webp");
@@ -63,29 +66,37 @@ header.header_04 {
 header.header_05 {
   background-image: url("/assets/header_05.webp");
 }
+nav {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  justify-content: flex-end;
+  display: inline-block;
+}
 
 div.note {
   margin-bottom: 3rem;
 }
 
 footer {
-  background-color: #EFCAC8;
-  display: flex;
   justify-content: space-between;
-  font-weight: bold;
   margin-top: 4rem;
+  display: flex;
 }
-.left, .right {
+footer, nav {
+  background-color: #EFCAC8;
+  font-weight: bold;
+}
+.left, .right, nav {
   padding: 0.3rem 1.8rem;
   display: flex;
   gap: 2rem;
 }
 
-footer a {
+footer a, nav a {
   color: #802F2F;
   text-decoration: inherit;
 }
-footer a:hover {
+footer a:hover, nav a:hover {
   color: #6B2525;
   text-decoration: underline;
 }

@@ -11,6 +11,9 @@ import type {UserModel} from "./models/UserModel.ts";
 import Footer from "./components/Footer.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import Header from './components/Header.tsx';
+import OfferPage from "./pages/OfferPage.tsx";
+import AboutUsPage from "./pages/AboutUsPage.tsx";
+import ContactPage from "./pages/ContactPage.tsx";
 
 function App() {
 
@@ -36,7 +39,10 @@ function App() {
         <Header/>
         <Routes>
             <Route path="/" element={<PlaceHolderPage/>}/>
+            <Route path="/offer" element={<OfferPage/>}/>
+            <Route path="/about" element={<AboutUsPage/>}/>
             <Route path="/gallery" element={<GalleryPage/>}/>
+            <Route path="/contact" element={<ContactPage/>}/>
             <Route path="/adminlogin" element={<LoginPage/>}/>
             <Route element = {<ProtectedRoute user={user}/>}>
                 <Route path="/admin" element={<AdminPage user={user}/>}/>

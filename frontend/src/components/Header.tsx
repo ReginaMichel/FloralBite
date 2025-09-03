@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {useLocation} from "react-router-dom";
+import NavBar from "./NavBar.tsx";
 
 export default function Header() {
 
@@ -22,6 +23,8 @@ export default function Header() {
     }, [location.pathname]);
 
     return (
-        <header className={background}></header>
+        <header className={background}>
+            <NavBar/>
+        </header>
     )
 }
