@@ -44,7 +44,7 @@ button.placeholder {
 header {
   background-size: cover;
   background-repeat: no-repeat;
-  height: 10rem;
+  height: 13rem;
   width: 100%;
   margin-bottom: 4rem;
   display: flex;
@@ -67,10 +67,11 @@ header.header_05 {
   background-image: url("/assets/header_05.webp");
 }
 nav {
-  margin-top: 5rem;
-  margin-bottom: 1rem;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
   justify-content: flex-end;
   display: inline-block;
+  font-size: 1.8rem;
 }
 
 div.note {
@@ -102,9 +103,9 @@ footer a:hover, nav a:hover {
 }
 
 a {
-  color: #CA6263;
+  color: #a04344;
   text-decoration: inherit;
 }
 a:hover {
-  color: #da8888;
+  color: #c06060;
 }

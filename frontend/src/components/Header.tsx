@@ -18,7 +18,7 @@ export default function Header() {
         } else if(location.pathname === "/adminlogin" || location.pathname === "/admin"){
             setBackground("header_04")
         } else if(location.pathname === "/impressum"){
-            setBackground("header_05")
+            setBackground("header_02")
         }
     }, [location.pathname]);
 
