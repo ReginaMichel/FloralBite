@@ -1,9 +1,10 @@
 import './App.css';
+import {themes} from "./styles/themeConfig.ts";
 import PlaceHolderPage from "./pages/PlaceholderPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ImpressumPage from "./pages/ImpressumPage.tsx";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ProtectedRoute from "./security/ProtectedRoute.tsx";
@@ -33,6 +34,24 @@ function App() {
     useEffect(() => {
         loadUser()
     }, []);
+
+    // Bei jedem Seitenwechsel soll ausgelöst werden, dass ein anderes Farbthema ausgewählt wird.
+    // Dafür braucht es einen useEffect, der ausgelöst wird.
+    // Dabei wird useLocation genutzt, um eine Änderung des Pfadnamens anzuzeigen.
+    const location = useLocation();
+    // Gibt das Theme des jeweiligen Pfads zurück:
+    function getCurrentTheme() {
+        return themes[location.pathname] || themes.default;
+    }
+    useEffect(() => {
+        const theme = getCurrentTheme();
+        const root = document.documentElement;
+        // Setzt CSS-Variablen auf die geladenen Werte:
+        root.style.setProperty('--link-color', theme.linkColor);
+        root.style.setProperty('--nav-bg', theme.background);
+        root.style.setProperty('--footer-bg', theme.background);
+        root.style.setProperty('--header-bg', `url(${theme.headerBackground})`);
+    }, [location.pathname]);
 
   return (
     <>
