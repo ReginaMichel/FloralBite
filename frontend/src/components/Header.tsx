@@ -11,14 +11,14 @@ export default function Header() {
     const [background, setBackground] = useState("header_03");
 
     useEffect(() => {
-        if(location.pathname === "/"){
+        if(location.pathname === "/" || location.pathname === "/about"){
             setBackground("header_03")
         } else if(location.pathname === "/gallery"){
             setBackground("header_02")
-        } else if(location.pathname === "/adminlogin" || location.pathname === "/admin"){
+        } else if(location.pathname === "/adminlogin" || location.pathname === "/admin" || location.pathname === "/impressum"){
             setBackground("header_04")
-        } else if(location.pathname === "/impressum"){
-            setBackground("header_02")
+        } else if(location.pathname === "/contact" || location.pathname === "/offer"){
+            setBackground("header_01")
         }
     }, [location.pathname]);
 
