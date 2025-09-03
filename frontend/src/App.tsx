@@ -9,6 +9,8 @@ import axios from "axios";
 import ProtectedRoute from "./security/ProtectedRoute.tsx";
 import type {UserModel} from "./models/UserModel.ts";
 import Footer from "./components/Footer.tsx";
+import GalleryPage from "./pages/GalleryPage.tsx";
+import Header from './components/Header.tsx';
 
 function App() {
 
@@ -31,15 +33,17 @@ function App() {
 
   return (
     <>
+        <Header/>
         <Routes>
-            <Route path="" element={<PlaceHolderPage />}/>
-            <Route path="/adminlogin" element={<LoginPage />}/>
+            <Route path="/" element={<PlaceHolderPage/>}/>
+            <Route path="/gallery" element={<GalleryPage/>}/>
+            <Route path="/adminlogin" element={<LoginPage/>}/>
             <Route element = {<ProtectedRoute user={user}/>}>
                 <Route path="/admin" element={<AdminPage user={user}/>}/>
             </Route>
-            <Route path="/impressum" element={<ImpressumPage />}/>
+            <Route path="/impressum" element={<ImpressumPage/>}/>
         </Routes>
-        <Footer />
+        <Footer/>
     </>
   )
 }
