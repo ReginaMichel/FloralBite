@@ -39,5 +39,9 @@ export const themes = {
         Background: "#F6D1AE",
         linkColor: "#A65200",
     },
-
+    default: {
+        headerBackground: "/assets/header_03.webp",
+        Background: "#EFCAC8",
+        linkColor: "#802F2F",
+    }
 }
