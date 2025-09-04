@@ -98,3 +98,8 @@ a:hover {
   color: var(--link-color);
   text-decoration: underline;
 }
+
+h2.galleryTitle {
+  color: var(--link-color);
+  background-color: var(--header-bg);
+}
