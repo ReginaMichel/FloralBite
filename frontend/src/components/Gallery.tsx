@@ -12,10 +12,10 @@ export default function Gallery(props:Readonly<GalleryProps>) {
 
     return (
         <div className="galleryComponent">
-            <h2 className="galleryTitle">{props.title}</h2>
+            <h1 className="galleryTitle">{props.title}</h1>
             <div className="galleryContent">
                 {images.map(image => (
-                    <img src={image} alt={"Ein Bild einer Speise."}/>
+                    <img src={image} alt={"Ein Bild einer Speise."} className="galleryContent"/>
                 ))}
             </div>
         </div>

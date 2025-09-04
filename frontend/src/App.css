@@ -99,7 +99,25 @@ a:hover {
   text-decoration: underline;
 }
 
-h2.galleryTitle {
+h1.galleryTitle {
   color: var(--link-color);
-  background-color: var(--header-bg);
+  margin: 1.8rem;
+}
+div.galleryContent {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
+  scroll-behavior: smooth; /* smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  scrollbar-width: none; /* Firefox - Scrollbar verbergen */
+}
+div.galleryContent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge - Scrollbar verbergen */
+}
+img.galleryContent {
+  height: 16rem;
+  flex-shrink: 0; /* unklar, ob ich das überhaupt brauche. verhindert, dass das bild geschrumpft wird*/
+  scroll-snap-align: start; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
+  border-radius: 0.4rem;
 }
