@@ -3,7 +3,7 @@ export type ImageCategory = 'herzh' | 'suess';
 
 // gibt die URLs aller Bilder einer bestimmten Kategorie als String-Array zurück:
 export function loadImages(category: ImageCategory): string[] {
-    const allImages = import.meta.glob('../assets/*.{webp}', {
+    const allImages = import.meta.glob('/assets/*.{webp}', {
         // "eager" heißt, dass es direkt geladen wird und nicht "lazy", erst wenn es benötigt wird.
         eager: true,
         // default import von einem Bild ist die Url zu dem Bild
