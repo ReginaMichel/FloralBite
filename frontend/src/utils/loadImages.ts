@@ -1,5 +1,5 @@
 // bisher zulässige Kategorien herzhaft und süß:
-type ImageCategory = 'herzh' | 'suess';
+export type ImageCategory = 'herzh' | 'suess';
 
 // gibt die URLs aller Bilder einer bestimmten Kategorie als String-Array zurück:
 export function loadImages(category: ImageCategory): string[] {

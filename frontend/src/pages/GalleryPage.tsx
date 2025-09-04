@@ -1,10 +1,11 @@
 import Gallery from "../components/Gallery.tsx";
+import type {ImageCategory} from "../utils/loadImages.ts";
 
 export default function GalleryPage() {
 
-    const type1:string = "herzh";
+    const type1:ImageCategory = "herzh";
     const title1:string = "Herzhaftes";
-    const type2:string = "suess";
+    const type2:ImageCategory = "suess";
     const title2:string = "Süßes";
 
     return (
