@@ -1,10 +1,11 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
-
+main {
+  margin: 2.5rem 1.5rem 2rem;
+}
 img.placeholder {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -46,7 +47,6 @@ header {
   background-repeat: no-repeat;
   height: 13rem;
   width: 100%;
-  margin-bottom: 4rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -68,7 +68,6 @@ div.note {
 
 footer {
   justify-content: space-between;
-  margin-top: 4rem;
   display: flex;
   background-color: var(--footer-bg);
 }
