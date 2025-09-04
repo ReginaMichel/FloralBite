@@ -4,7 +4,7 @@
   text-align: center;
 }
 main {
-  margin: 2.3rem 1.5rem 1.5rem;
+  margin: 2.3rem 0.4rem 1.5rem;
 }
 img.placeholder {
   margin-left: 2rem;
@@ -18,9 +18,7 @@ h1, h2, h3, p {
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
@@ -28,7 +26,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+button.placeholder:hover {
   border-color: #254038;
 }
 button:focus,
@@ -36,6 +34,8 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 button.placeholder {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
   background-color: #66966D;
   color: #254038;
   font-weight: bold;
@@ -58,8 +58,13 @@ nav {
   margin-top: 8rem;
   margin-bottom: 2rem;
   justify-content: flex-end;
-  display: inline-block;
+  display: flex;
   font-size: 1.8rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.3rem 1.8rem 0.3rem 2.4rem;
+  gap: 2rem;
 }
 
 div.note {
@@ -70,11 +75,9 @@ footer {
   justify-content: space-between;
   display: flex;
   background-color: var(--footer-bg);
-}
-footer, nav {
   font-weight: bold;
 }
-.left, .right, nav {
+div.left, div.right {
   padding: 0.3rem 1.8rem;
   display: flex;
   gap: 2rem;
@@ -100,10 +103,10 @@ a:hover {
 
 h1.galleryTitle {
   color: var(--link-color);
-  margin-bottom: 0;
-  margin-top: 0.7rem;
 }
 div.galleryContent {
+  margin-right: 1rem;
+  margin-left: 1rem;
   display: flex;
   overflow-x: auto;
   gap: 1rem;
@@ -120,4 +123,32 @@ img.galleryContent {
   flex-shrink: 0; /* unklar, ob ich das überhaupt brauche. verhindert, dass das bild geschrumpft wird*/
   scroll-snap-align: start; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
   border-radius: 0.4rem;
+}
+button.scrollButton {
+  position: absolute;
+  color: var(--link-color);
+  background-color: var(--nav-bg);
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: var(--link-color);
+  border-width: 0.2rem;
+  top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
+  transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
+}
+button.scrollButton:hover {
+  border-color: var(--link-color);
+}
+div.galleryContainer {
+  position: relative;
+}
+.scrollButton.left {
+  left: 0;
+}
+.scrollButton.right {
+  right: 0;
 }
