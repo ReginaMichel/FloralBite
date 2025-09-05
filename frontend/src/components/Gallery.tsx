@@ -27,14 +27,18 @@ export default function Gallery(props:Readonly<GalleryProps>) {
         const containerLeft = container.scrollLeft;
         const containerRight = containerLeft + container.clientWidth;
 
+        // Nötig um sauber auch die letzten Bilder zu erwischen
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
         for (const child of children) {
             const childLeft = child.offsetLeft;
             const childRight = childLeft + child.offsetWidth;
 
             // Wenn das Bild weiter rechts beginnt als die sichtbare Fläche
-            if (childLeft >= containerRight - 1) {
+            if (childRight > containerRight + 1) {
                 container.scrollTo({
-                    left: childLeft,
+                    // Um auch das Ende sauber zu erwischen wurde Math.min und maxScrollLeft hinzugefügt.
+                    left: Math.min(childLeft, maxScrollLeft),
                     behavior: 'smooth',
                 });
                 break;
@@ -42,8 +46,7 @@ export default function Gallery(props:Readonly<GalleryProps>) {
         }
     };
 
-    // Durchläuft die Bilder von Rechts nach Links und findet das Erste, das links vollständig außerhalb liegt
-    // und springt dorthin.
+    // Durchläuft die Bilder von Rechts nach Links und zeigt alle an, die noch außerhalb waren, die zusammen reinpassen.
     const scrollToPrevImage = () => {
         const container = scrollRef.current;
         if (!container) return;
@@ -51,19 +54,31 @@ export default function Gallery(props:Readonly<GalleryProps>) {
         const children = Array.from(container.children) as HTMLImageElement[];
 
         const containerLeft = container.scrollLeft;
+        const containerWidth = container.clientWidth;
 
+        let targetChild: HTMLImageElement | null = null;
+
+        // Wir gehen rückwärts durch die Bilder
         for (let i = children.length - 1; i >= 0; i--) {
             const child = children[i];
             const childRight = child.offsetLeft + child.offsetWidth;
 
-            // Wenn das Bild vollständig links außerhalb liegt
-            if (childRight <= containerLeft + 1) {
-                container.scrollTo({
-                    left: child.offsetLeft,
-                    behavior: 'smooth',
-                });
-                break;
+            // Wenn das Bild außerhalb des linken Bereichs liegt
+            if (childRight <= containerLeft - 1) {
+                // Prüfe, ob es (plus seine Breite) in den Container passt
+                if (!targetChild || (containerLeft - child.offsetLeft) <= containerWidth) {
+                    targetChild = child;
+                } else {
+                    break;
+                }
             }
+        }
+
+        if (targetChild) {
+            container.scrollTo({
+                left: targetChild.offsetLeft,
+                behavior: 'smooth',
+            });
         }
     };
 
