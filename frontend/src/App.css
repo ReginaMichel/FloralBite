@@ -1,10 +1,11 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
-
+main {
+  margin: 2.3rem 0.4rem 1.5rem;
+}
 img.placeholder {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -17,9 +18,7 @@ h1, h2, h3, p {
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
@@ -27,14 +26,19 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+button.placeholder:hover {
   border-color: #254038;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+button:disabled {
+  cursor: default;
+}
 button.placeholder {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
   background-color: #66966D;
   color: #254038;
   font-weight: bold;
@@ -46,7 +50,6 @@ header {
   background-repeat: no-repeat;
   height: 13rem;
   width: 100%;
-  margin-bottom: 4rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -54,12 +57,17 @@ header {
 }
 
 nav {
-  background-color: var(--nav-bg);
+  background-color: rgb(var(--nav-bg));
   margin-top: 8rem;
   margin-bottom: 2rem;
   justify-content: flex-end;
-  display: inline-block;
+  display: flex;
   font-size: 1.8rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.3rem 1.8rem 0.3rem 2.4rem;
+  gap: 2rem;
 }
 
 div.note {
@@ -68,33 +76,87 @@ div.note {
 
 footer {
   justify-content: space-between;
-  margin-top: 4rem;
   display: flex;
-  background-color: var(--footer-bg);
-}
-footer, nav {
+  background-color: rgb(var(--footer-bg));
   font-weight: bold;
 }
-.left, .right, nav {
+div.left, div.right {
   padding: 0.3rem 1.8rem;
   display: flex;
   gap: 2rem;
 }
 
 footer a, nav a {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: inherit;
 }
 footer a:hover, nav a:hover {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: underline;
 }
 
 a {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: underline;
+}
+
+h1.galleryTitle {
+  color: rgb(var(--link-color));
+}
+div.galleryContainer {
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+div.galleryContent {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
+  scroll-behavior: smooth; /* smooth scrolling */
+  -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  scrollbar-width: none; /* Firefox - Scrollbar verbergen */
+}
+div.galleryContent::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge - Scrollbar verbergen */
+}
+img.galleryImages {
+  height: 16rem;
+  flex-shrink: 0; /* unklar, ob ich das überhaupt brauche. verhindert, dass das bild geschrumpft wird*/
+  scroll-snap-align: start; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
+  border-radius: 0.4rem;
+}
+button.scrollButton {
+  position: absolute;
+  color: rgb(var(--link-color));
+  background-color: rgb(var(--nav-bg));
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: rgb(var(--link-color));
+  border-width: 0; /* vorübergehend disabled */
+  top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
+  transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
+}
+button.scrollButton:hover {
+  border-color: rgb(var(--link-color));
+}
+.scrollButton.left {
+  left: 0;
+}
+.scrollButton.right {
+  right: 0;
+}
+.scrollButton:disabled {
+  color: rgba(var(--link-color), 0.6);
+  background-color: rgba(var(--nav-bg), 0.6);
+  border-color: rgba(var(--link-color), 0.6);
 }

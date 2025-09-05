@@ -56,18 +56,20 @@ function App() {
   return (
     <>
         <Header/>
-        <Routes>
-            <Route path="/" element={<PlaceHolderPage/>}/>
-            <Route path="/offer" element={<OfferPage/>}/>
-            <Route path="/about" element={<AboutUsPage/>}/>
-            <Route path="/gallery" element={<GalleryPage/>}/>
-            <Route path="/contact" element={<ContactPage/>}/>
-            <Route path="/adminlogin" element={<LoginPage/>}/>
-            <Route element = {<ProtectedRoute user={user}/>}>
-                <Route path="/admin" element={<AdminPage user={user}/>}/>
-            </Route>
-            <Route path="/impressum" element={<ImpressumPage/>}/>
-        </Routes>
+        <main>
+            <Routes>
+                <Route path="/" element={<PlaceHolderPage/>}/>
+                <Route path="/offer" element={<OfferPage/>}/>
+                <Route path="/about" element={<AboutUsPage/>}/>
+                <Route path="/gallery" element={<GalleryPage/>}/>
+                <Route path="/contact" element={<ContactPage/>}/>
+                <Route path="/adminlogin" element={<LoginPage/>}/>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/admin" element={<AdminPage user={user}/>}/>
+                </Route>
+                <Route path="/impressum" element={<ImpressumPage/>}/>
+            </Routes>
+        </main>
         <Footer/>
     </>
   )
