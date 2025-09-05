@@ -12,20 +12,15 @@ type GalleryProps = {
 export default function Gallery(props:Readonly<GalleryProps>) {
 
     const images = loadImages(props.type);
-    const [buttonLeftDisabled, setButtonLeftDisabled] = useState<boolean>(false);
+    const [buttonLeftDisabled, setButtonLeftDisabled] = useState<boolean>(true);
     const [buttonRightDisabled, setButtonRightDisabled] = useState<boolean>(false);
-
-    // Initiales Überprüfen der Buttons:
-    useEffect(() => {
-        updateButtonStates();
-    },[]);
 
     // useRef: Referenz auf ein DOM-Element, das ein Re-rendern auslöst, wenn es sich ändert.
     const scrollRef = useRef<HTMLDivElement>(null);
 
     // Prüft alle Bilder in der Galerie und findet das Erste, dessen offsetLeft außerhalb des Rechten Randes liegt.
     // Danach springt es beim Scrollen auf dieses Bild.
-    const scrollToNextImage = () => {
+    const scrollRight = () => {
         const container = scrollRef.current;
         if (!container) return;
 
@@ -48,15 +43,13 @@ export default function Gallery(props:Readonly<GalleryProps>) {
                     left: Math.min(childLeft, maxScrollLeft),
                     behavior: 'smooth',
                 });
-                // Überprüft ob ein Button disabled werden sollte. Timeout, da das Scrollen smooth ist:
-                setTimeout(updateButtonStates, 300);
                 break;
             }
         }
     };
 
     // Durchläuft die Bilder von Rechts nach Links und zeigt alle an, die noch außerhalb waren, die zusammen reinpassen.
-    const scrollToPrevImage = () => {
+    const scrollLeft = () => {
         const container = scrollRef.current;
         if (!container) return;
 
@@ -88,40 +81,62 @@ export default function Gallery(props:Readonly<GalleryProps>) {
                 left: targetChild.offsetLeft,
                 behavior: 'smooth',
             });
-            // Überprüft ob ein Button disabled werden sollte. Timeout, da das Scrollen smooth ist:
-            setTimeout(updateButtonStates, 300);
         }
     };
 
-    // Überprüft, ob das Ende der Galerie erreicht ist und ein Button disabled werden sollte.
+    // Überprüft, ob ein Ende der Galerie erreicht ist und ein Button disabled werden sollte.
     const updateButtonStates = () => {
         const container = scrollRef.current;
         if (!container) return;
 
-        const scrollLeft = container.scrollLeft;
-        const scrollWidth = container.scrollWidth;
-        const clientWidth = container.clientWidth;
+        const children = Array.from(container.children) as HTMLImageElement[];
+        const firstChild = children[0];
+        const lastChild = children[children.length - 1];
 
-        // Am linken Rand angekommen
-        setButtonLeftDisabled(scrollLeft <= 0);
+        if (!firstChild || !lastChild) return;
 
-        // Am rechten Rand angekommen
-        setButtonRightDisabled(scrollLeft + clientWidth >= scrollWidth - 1);
-    }
+        const containerRect = container.getBoundingClientRect();
+        const firstChildRect = firstChild.getBoundingClientRect();
+        const lastChildRect = lastChild.getBoundingClientRect();
 
+        // Wenn das erste Bild sichtbar ist (linker Rand des Bildes >= linker Rand des Containers)
+        const isAtStart = firstChildRect.left >= containerRect.left - 1;
+        // Wenn das letzte Bild sichtbar ist (rechter Rand des Bildes <= rechter Rand des Containers)
+        const isAtEnd = lastChildRect.right <= containerRect.right + 1;
+        setButtonLeftDisabled(isAtStart);
+        setButtonRightDisabled(isAtEnd);
+    };
+
+    useEffect(() => {
+        const container = scrollRef.current;
+        if (!container) return;
+        const handleScroll = () => {
+            updateButtonStates();
+        };
+        container.addEventListener('scroll', handleScroll);
+        // Initiale Prüfung
+        updateButtonStates();
+        return () => {
+            container.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    // Das onLoad bei den Bildern ist wichtig, da es beim Neuladen der Seite passieren kann, dass beide Buttons auf
+    // disabled gesetzt werden, weil die Bilder zu lange brauchen und die Galerie bei der Prüfung noch "leer" ist.
     return (
         <div className="galleryComponent">
             <h1 className="galleryTitle">{props.title}</h1>
             <div className="galleryContainer">
-                <button className={"scrollButton left"} onClick={scrollToPrevImage} disabled={buttonLeftDisabled}>
+                <button className={"scrollButton left"} onClick={scrollLeft} disabled={buttonLeftDisabled}>
                     <FaChevronLeft />
                 </button>
-                <button className={"scrollButton right"} onClick={scrollToNextImage} disabled={buttonRightDisabled}>
+                <button className={"scrollButton right"} onClick={scrollRight} disabled={buttonRightDisabled}>
                     <FaChevronRight />
                 </button>
                 <div className="galleryContent" ref={scrollRef}>
                     {images.map(image => (
-                        <img src={image} alt={"Ein Bild einer Speise."} className="galleryImages"/>
+                        <img src={image} alt={"Ein Bild einer Speise."} className="galleryImages"
+                             onLoad={updateButtonStates}/>
                     ))}
                 </div>
             </div>

@@ -104,9 +104,12 @@ a:hover {
 h1.galleryTitle {
   color: rgb(var(--link-color));
 }
+div.galleryContainer {
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 div.galleryContent {
-  margin-right: 1rem;
-  margin-left: 1rem;
   display: flex;
   overflow-x: auto;
   gap: 1rem;
@@ -142,9 +145,6 @@ button.scrollButton {
 }
 button.scrollButton:hover {
   border-color: rgb(var(--link-color));
-}
-div.galleryContainer {
-  position: relative;
 }
 .scrollButton.left {
   left: 0;
