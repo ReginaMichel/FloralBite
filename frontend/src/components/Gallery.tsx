@@ -2,7 +2,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 import {loadImages} from "../utils/loadImages.ts";
 import type {ImageCategory} from "../utils/loadImages.ts";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 
 type GalleryProps = {
     type: ImageCategory;
@@ -12,6 +12,13 @@ type GalleryProps = {
 export default function Gallery(props:Readonly<GalleryProps>) {
 
     const images = loadImages(props.type);
+    const [buttonLeftDisabled, setButtonLeftDisabled] = useState<boolean>(false);
+    const [buttonRightDisabled, setButtonRightDisabled] = useState<boolean>(false);
+
+    // Initiales Überprüfen der Buttons:
+    useEffect(() => {
+        updateButtonStates();
+    },[]);
 
     // useRef: Referenz auf ein DOM-Element, das ein Re-rendern auslöst, wenn es sich ändert.
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -41,6 +48,8 @@ export default function Gallery(props:Readonly<GalleryProps>) {
                     left: Math.min(childLeft, maxScrollLeft),
                     behavior: 'smooth',
                 });
+                // Überprüft ob ein Button disabled werden sollte. Timeout, da das Scrollen smooth ist:
+                setTimeout(updateButtonStates, 300);
                 break;
             }
         }
@@ -79,22 +88,40 @@ export default function Gallery(props:Readonly<GalleryProps>) {
                 left: targetChild.offsetLeft,
                 behavior: 'smooth',
             });
+            // Überprüft ob ein Button disabled werden sollte. Timeout, da das Scrollen smooth ist:
+            setTimeout(updateButtonStates, 300);
         }
     };
+
+    // Überprüft, ob das Ende der Galerie erreicht ist und ein Button disabled werden sollte.
+    const updateButtonStates = () => {
+        const container = scrollRef.current;
+        if (!container) return;
+
+        const scrollLeft = container.scrollLeft;
+        const scrollWidth = container.scrollWidth;
+        const clientWidth = container.clientWidth;
+
+        // Am linken Rand angekommen
+        setButtonLeftDisabled(scrollLeft <= 0);
+
+        // Am rechten Rand angekommen
+        setButtonRightDisabled(scrollLeft + clientWidth >= scrollWidth - 1);
+    }
 
     return (
         <div className="galleryComponent">
             <h1 className="galleryTitle">{props.title}</h1>
             <div className="galleryContainer">
-                <button className={"scrollButton left"} onClick={scrollToPrevImage}>
+                <button className={"scrollButton left"} onClick={scrollToPrevImage} disabled={buttonLeftDisabled}>
                     <FaChevronLeft />
                 </button>
-                <button className={"scrollButton right"} onClick={scrollToNextImage}>
+                <button className={"scrollButton right"} onClick={scrollToNextImage} disabled={buttonRightDisabled}>
                     <FaChevronRight />
                 </button>
                 <div className="galleryContent" ref={scrollRef}>
                     {images.map(image => (
-                        <img src={image} alt={"Ein Bild einer Speise."} className="galleryContent"/>
+                        <img src={image} alt={"Ein Bild einer Speise."} className="galleryImages"/>
                     ))}
                 </div>
             </div>

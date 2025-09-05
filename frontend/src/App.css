@@ -54,7 +54,7 @@ header {
 }
 
 nav {
-  background-color: var(--nav-bg);
+  background-color: rgb(var(--nav-bg));
   margin-top: 8rem;
   margin-bottom: 2rem;
   justify-content: flex-end;
@@ -74,7 +74,7 @@ div.note {
 footer {
   justify-content: space-between;
   display: flex;
-  background-color: var(--footer-bg);
+  background-color: rgb(var(--footer-bg));
   font-weight: bold;
 }
 div.left, div.right {
@@ -84,25 +84,25 @@ div.left, div.right {
 }
 
 footer a, nav a {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: inherit;
 }
 footer a:hover, nav a:hover {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: underline;
 }
 
 a {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
   text-decoration: underline;
 }
 
 h1.galleryTitle {
-  color: var(--link-color);
+  color: rgb(var(--link-color));
 }
 div.galleryContent {
   margin-right: 1rem;
@@ -118,7 +118,7 @@ div.galleryContent {
 div.galleryContent::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge - Scrollbar verbergen */
 }
-img.galleryContent {
+img.galleryImages {
   height: 16rem;
   flex-shrink: 0; /* unklar, ob ich das überhaupt brauche. verhindert, dass das bild geschrumpft wird*/
   scroll-snap-align: start; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
@@ -126,8 +126,8 @@ img.galleryContent {
 }
 button.scrollButton {
   position: absolute;
-  color: var(--link-color);
-  background-color: var(--nav-bg);
+  color: rgb(var(--link-color));
+  background-color: rgb(var(--nav-bg));
   width: 4rem;
   height: 4rem;
   font-size: 2.7rem;
@@ -135,13 +135,13 @@ button.scrollButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-color: var(--link-color);
-  border-width: 0;
+  border-color: rgb(var(--link-color));
+  border-width: 0; /* vorübergehend disabled */
   top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
   transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
 }
 button.scrollButton:hover {
-  border-color: var(--link-color);
+  border-color: rgb(var(--link-color));
 }
 div.galleryContainer {
   position: relative;
@@ -151,4 +151,9 @@ div.galleryContainer {
 }
 .scrollButton.right {
   right: 0;
+}
+.scrollButton:disabled {
+  color: rgba(var(--link-color), 0.6);
+  background-color: rgba(var(--nav-bg), 0.6);
+  border-color: rgba(var(--link-color), 0.6);
 }
