@@ -130,13 +130,13 @@ button.scrollButton {
   background-color: var(--nav-bg);
   width: 4rem;
   height: 4rem;
-  font-size: 2.4rem;
+  font-size: 2.7rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border-color: var(--link-color);
-  border-width: 0.2rem;
+  border-width: 0;
   top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
   transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
 }
