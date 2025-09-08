@@ -11,6 +11,8 @@ export default function ContactPage() {
                     Ich freue mich auf deine Nachricht
                 </h1>
                 <p>Du kannst mich gerne per Telefon, E-Mail oder über das Kontaktformular erreichen.</p>
+                <p>Egal ob es sich um Anfragen, Feedback, Wünsche oder Kritik handelt, ich freue mich,
+                    von dir zu hören.</p>
                 <div className="contactMethod">
                     <button className="contactIcon" disabled={true}>
                         <LocationOnOutlinedIcon/></button>

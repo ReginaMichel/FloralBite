@@ -1,75 +1,100 @@
 import {
     Checkbox,
-    FormControl,
     FormControlLabel,
-    InputLabel,
     MenuItem,
-    Select,
     Stack,
     TextField
 } from "@mui/material";
 import {useState} from "react";
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 
 export default function ContactForm() {
 
-    const [telefonisch, setTelefonisch] = useState(false);
-    const [telefonnummer, setTelefonnummer] = useState('');
+    const [agreement, setAgreement] = useState(false);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
 
     return(
         <Stack spacing={2}>
-                <FormControl fullWidth margin="normal" required>
-                    <InputLabel id="anliegen-label">Anliegen</InputLabel>
-                    <Select
-                        labelId="anliegen-label"
+                <div className="form">
+                    <button className="formIcon" disabled={true}>
+                        <FeedbackOutlinedIcon/></button>
+                    <TextField
                         label="Anliegen"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        select
+                        fullWidth
+                        required
                     >
-                        <MenuItem value="anfrage">Anfrage</MenuItem>
+                        <MenuItem value="request">Anfrage</MenuItem>
                         <MenuItem value="feedback">Feedback</MenuItem>
-                        <MenuItem value="sonstiges">Sonstiges</MenuItem>
-                    </Select>
-                </FormControl>
-                <TextField
-                    label="Ihr Name"
-                    onChange={(e) => {}}
-                    required
-                    fullWidth
-                />
-                <TextField
-                    label="Ihre E-Mail-Adresse"
-                    onChange={(e) => {}}
-                    fullWidth
-                    required
-                />
-                <TextField
-                    label="Betreff (optional)"
-                    onChange={(e) => {}}
-                    fullWidth
-                />
-                <TextField
-                    label="Ihre Nachricht an uns"
-                    onChange={(e) => {}}
-                    required
-                    fullWidth
-                />
+                        <MenuItem value="other">Sonstiges</MenuItem>
+                    </TextField>
+                </div>
+                <div className="form">
+                    <button className="formIcon" disabled={true}>
+                        <PersonOutlineOutlinedIcon/></button>
+                    <TextField
+                        label="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        fullWidth
+                    />
+                </div>
+                <div className="form">
+                    <button className="formIcon" disabled={true}>
+                        <MailOutlinedIcon/></button>
+                    <TextField
+                        label={"E-Mail-Adresse"}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        fullWidth
+                        required
+                    />
+                </div>
+                <div className="form">
+                    <button className="formIcon" disabled={true}>
+                        <PhoneInTalkOutlinedIcon/></button>
+                    <TextField
+                        label="Telefonnummer (optional)"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        fullWidth
+                    />
+                </div>
+                <div className="form">
+                    <button className="formIcon" disabled={true}>
+                        <ChatOutlinedIcon/></button>
+                    <TextField
+                        label="Nachricht"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        required
+                        fullWidth
+                    />
+                </div>
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={telefonisch}
-                            onChange={(e) => setTelefonisch(e.target.checked)}
+                            checked={agreement}
+                            onChange={(e) => setAgreement(e.target.checked)}
                         />
                     }
-                    label="Ich möchte lieber per Telefon kontaktiert werden"
+                    label="Ich habe die DSGVO-Erklärung gelesen und bin mit der Speicherung und Verarbeitung meiner
+                    Daten einverstanden."
                 />
-                {telefonisch && (
-                    <TextField
-                        label="Telefonnummer"
-                        value={telefonnummer}
-                        onChange={(e) => setTelefonnummer(e.target.value)}
-                        fullWidth
-                        required
-                        margin="normal"
-                    />
-                )}
+                <button>
+                    Absenden
+                </button>
         </Stack>
     );
 }

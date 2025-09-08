@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
 }
 h1, h2, h3 {
   font-family: 'Playfair Display', serif;
@@ -194,7 +194,7 @@ button.scrollButton:hover {
 }
 div.contactLeft {
   text-align: left;
-  max-width: 40%;
+  max-width: 35%;
   padding-right: 1rem;
 }
 div.contactMethod {
@@ -205,8 +205,19 @@ div.contactMethod {
 }
 button.contactIcon {
   background-color: var(--light-sage-green);
-  color: var(--dark-green)
+  color: var(--dark-green);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.4rem;
 }
-button.contactIcon svg {
-  fill: var(--dark-green)
+div.form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+button.formIcon {
+  background-color: transparent;
+  color: var(--light-sage-green);
+  width: 2.5rem;
+  height: 2.5rem;
 }
