@@ -189,3 +189,21 @@ button.scrollButton:hover {
   background-color: rgba(var(--nav-bg), 0.6);
   border-color: rgba(var(--link-color), 0.6);
 }
+div.contactLeft {
+  text-align: left;
+  max-width: 40%;
+  padding-right: 1rem;
+}
+div.contactMethod {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+button.contactIcon {
+  background-color: var(--light-sage-green);
+  color: var(--dark-green)
+}
+button.contactIcon svg {
+  fill: var(--dark-green)
+}
