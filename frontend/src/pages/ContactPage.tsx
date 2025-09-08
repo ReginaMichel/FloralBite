@@ -1,17 +1,30 @@
 import ContactForm from "../components/ContactForm.tsx";
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
 
 export default function ContactPage() {
     return (
-        <>
-            <div className="note">
-                <h1>Hinweis</h1>
-                <h2>Floral Bite und diese Website befinden sich noch im Aufbau. Es werden keine Dienstleistungen angeboten.
-                    Falls Sie Fragen haben, können Sie uns über{" "}
-                    <a href="mailto:info@floralbite.de">info@floralbite.de</a>
-                    {" "}erreichen.
-                </h2>
+        <div className="rowAlignment">
+            <div className="contactLeft">
+                <h1>Hungrig geworden?<br/>
+                    Ich freue mich auf deine Nachricht
+                </h1>
+                <p>Du kannst mich gerne per Telefon, E-Mail oder über das Kontaktformular erreichen.</p>
+                <div className="contactMethod">
+                    <button className="contactIcon" disabled={true}>
+                        <LocationOnOutlinedIcon/></button>
+                    Niebergallstraße 11, 64331 Weiterstadt</div>
+                <div className="contactMethod">
+                    <button className="contactIcon" disabled={true}>
+                        <MailOutlinedIcon/></button>
+                    <a href="mailto:info@floralbite.de">info@floralbite.de</a></div>
+                <div className="contactMethod">
+                    <button className="contactIcon" disabled={true}>
+                        <PhoneInTalkOutlinedIcon/></button>
+                    +49 xxx</div>
             </div>
             <ContactForm/>
-        </>
+        </div>
     )
 }
