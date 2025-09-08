@@ -9,9 +9,12 @@ export default function GalleryPage() {
     const title2:string = "Süßes";
 
     return (
-        <div className="galleryPage">
-            <Gallery type={type1} title={title1}/>
-            <Gallery type={type2} title={title2}/>
-        </div>
+        <>
+            <p>Herzhaft und süß, immer vegan, frisch und richtig lecker.</p>
+            <div className="galleryPage">
+                <Gallery type={type1} title={title1}/>
+                <Gallery type={type2} title={title2}/>
+            </div>
+        </>
     )
 }
