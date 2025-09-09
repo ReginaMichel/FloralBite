@@ -30,7 +30,22 @@ public class MailService {
     }
 
     public void sendMailToOwner(Message message) {
-
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        if (message.subject().equals("request")) {
+            mailMessage.setTo("anfrage@floralbite.de");
+            mailMessage.setSubject("Neue Anfrage von " + message.name());
+        } else if (message.subject().equals("feedback")) {
+            mailMessage.setTo("feedback@floralbite.de");
+            mailMessage.setSubject("Neues Feedback von " + message.name());
+        } else {
+            mailMessage.setTo(fromAddress);
+            mailMessage.setSubject("Neue Nachricht von " + message.name());
+        }
+        mailMessage.setText("Hallo Julia,\n\ngerade eben ist über das Kontaktformular folgende Nachricht eingegangen:\n\n\"" +
+                message.message() + "\"\n\nDu kannst die Person auf folgenden Wegen kontaktieren:\n\nE-Mail: " + message.email() +
+                "\nTelefon: " + message.phoneNumber() + "\n\nLiebe Grüße\nRegina aka FloralByte");
+        mailMessage.setFrom(fromAddress);
+        mailSender.send(mailMessage);
     }
 
     public void sendMailToUser(Message message) {
