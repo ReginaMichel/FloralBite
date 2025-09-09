@@ -1,4 +1,5 @@
 import './App.css';
+import './styles/colors.css';
 import {themes} from "./styles/themeConfig.ts";
 import PlaceHolderPage from "./pages/PlaceholderPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";

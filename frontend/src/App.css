@@ -1,16 +1,48 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
+}
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+p {
+  font-size: 1.125rem;
 }
 main {
   margin: 2.3rem 0.4rem 1.5rem;
 }
-img.placeholder {
-  margin-left: 2rem;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
-  max-width: 47%;
+img.placeholderLogo {
+  height: 9rem;
+  width: auto;
+  margin: 0.7rem;
+}
+img.placeholderTitle {
+  height: 8rem;
+  width: auto;
+  margin: 0.7rem;
+}
+img.placeholderJulia {
+   height: 27rem;
+   width: auto;
+   margin: 0.7rem;
+}
+p.leftAlign {
+  text-align: left;
+}
+
+div.rowAlignment {
+  display: flex;
+  gap: 1rem;
 }
 
 h1, h2, h3, p {
@@ -159,4 +191,26 @@ button.scrollButton:hover {
   color: rgba(var(--link-color), 0.6);
   background-color: rgba(var(--nav-bg), 0.6);
   border-color: rgba(var(--link-color), 0.6);
+}
+div.contactLeft {
+  text-align: left;
+  width: 35%;
+  padding-right: 1rem;
+}
+div.contactLeft {
+  text-align: left;
+  max-width: 65%;
+}
+div.contactMethod {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+button.contactIcon {
+  background-color: var(--light-sage-green);
+  color: var(--dark-green);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.4rem;
 }
