@@ -33,12 +33,10 @@ export default function ContactForm() {
                         onChange={(e) => setName(e.target.value)}
                         required
                         fullWidth
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <PersonOutlineOutlinedIcon />
-                                </InputAdornment>
-                            ),
+                        slotProps={{
+                            input: {
+                                startAdornment: <InputAdornment position="start"><PersonOutlineOutlinedIcon /></InputAdornment>,
+                            },
                         }}
                     />
                 </Grid>
@@ -50,12 +48,10 @@ export default function ContactForm() {
                         select
                         fullWidth
                         required
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <FeedbackOutlinedIcon />
-                                </InputAdornment>
-                            ),
+                        slotProps={{
+                            input: {
+                                startAdornment: <InputAdornment position="start"><FeedbackOutlinedIcon /></InputAdornment>,
+                            },
                         }}
                     >
                         <MenuItem value="request">Anfrage</MenuItem>
@@ -74,12 +70,10 @@ export default function ContactForm() {
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
                         required
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <MailOutlinedIcon />
-                                </InputAdornment>
-                            ),
+                        slotProps={{
+                            input: {
+                                startAdornment: <InputAdornment position="start"><MailOutlinedIcon /></InputAdornment>,
+                            },
                         }}
                     />
                 </Grid>
@@ -89,12 +83,10 @@ export default function ContactForm() {
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         fullWidth
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <PhoneInTalkOutlinedIcon />
-                                </InputAdornment>
-                            ),
+                        slotProps={{
+                            input: {
+                                startAdornment: <InputAdornment position="start"><PhoneInTalkOutlinedIcon /></InputAdornment>,
+                            },
                         }}
                     />
                 </Grid>
@@ -109,12 +101,10 @@ export default function ContactForm() {
                 fullWidth
                 multiline
                 rows={8}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <ChatOutlinedIcon />
-                        </InputAdornment>
-                    ),
+                slotProps={{
+                    input: {
+                        startAdornment: <InputAdornment position="start"><ChatOutlinedIcon /></InputAdornment>,
+                    },
                 }}
             />
 
