@@ -26,7 +26,7 @@ export default function ContactForm() {
         <Stack spacing={2} sx={{ width: '100%' }}>
             {/* Name & Anliegen */}
             <Grid container spacing={2} sx={{ width: '100%' }}>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{xs: 12, sm: 6}}>
                     <TextField
                         label="Name"
                         value={name}
@@ -42,7 +42,7 @@ export default function ContactForm() {
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{xs: 12, sm: 6}}>
                     <TextField
                         label="Anliegen"
                         value={subject}
@@ -67,7 +67,7 @@ export default function ContactForm() {
 
             {/* E-Mail & Telefonnummer */}
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{xs: 12, sm: 6}}>
                     <TextField
                         label="E-Mail-Adresse"
                         value={email}
@@ -83,7 +83,7 @@ export default function ContactForm() {
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid size={{xs: 12, sm: 6}}>
                     <TextField
                         label="Telefonnummer (optional)"
                         value={phoneNumber}
