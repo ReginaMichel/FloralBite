@@ -28,7 +28,7 @@ export default function ContactForm() {
         event.preventDefault();
         setSending(true);
         try {
-            await axios.post(`/api/requests`, {
+            await axios.post(`/api/contact`, {
                 name,
                 subject,
                 email,
