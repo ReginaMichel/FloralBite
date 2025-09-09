@@ -12,7 +12,7 @@ public class MailService {
     private final IdService idService;
     private final JavaMailSender mailSender;
     @Value("${HETZNER_USER}")
-    private final String fromAddress;
+    private String fromAddress;
 
     public MailService(MessageRepo messageRepo, IdService idService, JavaMailSender mailSender) {
         this.messageRepo = messageRepo;
@@ -40,7 +40,7 @@ public class MailService {
         mailMessage.setText("Hallo " + message.name() + ",\n\n" +
                 "vielen Dank für deine Nachricht. Ich werde mich so bald wie möglich bei dir melden." + "\n\n" +
                 "Viele Grüße" + "\n" + "Julia von FloralBite" + "\n\n" +
-                "Deine Nachricht:" + "\n" + message.message());
+                "Deine Nachricht:" + "\n\"" + message.message() + "\"");
         mailMessage.setFrom(fromAddress);
         mailSender.send(mailMessage);
     }
