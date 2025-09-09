@@ -26,7 +26,9 @@ export default function ContactPage() {
                         <PhoneInTalkOutlinedIcon/></button>
                     +49 xxx</div>
             </div>
-            <ContactForm/>
+            <div className="contactRight">
+                <ContactForm/>
+            </div>
         </div>
     )
 }

@@ -194,8 +194,12 @@ button.scrollButton:hover {
 }
 div.contactLeft {
   text-align: left;
-  max-width: 35%;
+  width: 35%;
   padding-right: 1rem;
+}
+div.contactLeft {
+  text-align: left;
+  max-width: 65%;
 }
 div.contactMethod {
   display: flex;
@@ -209,15 +213,4 @@ button.contactIcon {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.4rem;
-}
-div.form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-button.formIcon {
-  background-color: transparent;
-  color: var(--light-sage-green);
-  width: 2.5rem;
-  height: 2.5rem;
 }
