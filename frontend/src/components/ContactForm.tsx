@@ -130,7 +130,7 @@ export default function ContactForm() {
             />
 
             {/* Button */}
-            <button>Absenden</button>
+            <button disabled={!agreement}>Absenden</button>
         </Stack>
     );
 }
