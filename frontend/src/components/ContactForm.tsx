@@ -7,7 +7,8 @@ import {
     Grid,
     InputAdornment,
 } from "@mui/material";
-import { useState } from "react";
+import {type FormEvent, useState} from "react";
+import axios from "axios";
 import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
@@ -21,9 +22,39 @@ export default function ContactForm() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [sending, setSending] = useState(false);
+
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setSending(true);
+        try {
+            await axios.post(`/api/requests`, {
+                name,
+                subject,
+                email,
+                phoneNumber,
+                message
+            });
+            // hier könnte man noch follow-ups hinzufügen. z.B. ein "vielen dank für deine nachricht"-irgendwas
+        } finally {
+            setAgreement(false);
+            setName("");
+            setEmail("");
+            setPhoneNumber("");
+            setSubject("");
+            setMessage("");
+            setSending(false);
+        }
+    }
 
     return (
-        <Stack spacing={2} sx={{ width: '100%' }}>
+        <Stack
+            spacing={2}
+            sx={{ width: '100%' }}
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate>
+
             {/* Name & Anliegen */}
             <Grid container spacing={2} sx={{ width: '100%' }}>
                 <Grid size={{xs: 12, sm: 6}}>
@@ -120,7 +151,7 @@ export default function ContactForm() {
             />
 
             {/* Button */}
-            <button disabled={!agreement}>Absenden</button>
+            <button disabled={!agreement||sending} type="submit">{sending ? "Wird gesendet…" : "Absenden"}</button>
         </Stack>
     );
 }
