@@ -7,19 +7,19 @@ h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
 h1 {
-  font-size: 2rem;
+  font-size: 3rem; /* 2 */
 }
 h2 {
-  font-size: 1.5rem;
+  font-size: 2rem; /* 1.5 */
 }
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.75rem; /* 1.25 */
 }
 p {
-  font-size: 1.125rem;
+  font-size: 1.25rem; /* 1.125 */
 }
 main {
-  margin: 2.3rem 0.4rem 1.5rem;
+  padding: 4rem;
 }
 img.placeholderLogo {
   height: 9rem;
@@ -97,7 +97,6 @@ nav {
   font-size: 1.8rem;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  font-weight: bold;
   padding: 0.3rem 1.8rem 0.3rem 2.4rem;
   gap: 2rem;
 }
@@ -110,7 +109,6 @@ footer {
   justify-content: space-between;
   display: flex;
   background-color: rgb(var(--footer-bg));
-  font-weight: bold;
 }
 div.left, div.right {
   padding: 0.3rem 1.8rem;
@@ -213,4 +211,8 @@ button.contactIcon {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 0.4rem;
+}
+
+img.logoHome {
+  width: 100%;
 }

@@ -1,7 +1,6 @@
 import './App.css';
 import './styles/colors.css';
 import {themes} from "./styles/themeConfig.ts";
-import PlaceHolderPage from "./pages/PlaceholderPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ImpressumPage from "./pages/ImpressumPage.tsx";
@@ -16,6 +15,7 @@ import Header from './components/Header.tsx';
 import OfferPage from "./pages/OfferPage.tsx";
 import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
 function App() {
 
@@ -59,7 +59,7 @@ function App() {
         <Header/>
         <main>
             <Routes>
-                <Route path="/" element={<PlaceHolderPage/>}/>
+                <Route path="/" element={<HomePage/>}/>
                 <Route path="/offer" element={<OfferPage/>}/>
                 <Route path="/about" element={<AboutUsPage/>}/>
                 <Route path="/gallery" element={<GalleryPage/>}/>
