@@ -64,7 +64,7 @@ public class MailService {
         mailSender.send(mailMessage);
     }
 
-    public void addMessage(Message message) {
-        messageRepo.save(message);
+    public Message addMessage(Message message) {
+        return messageRepo.save(message);
     }
 }
