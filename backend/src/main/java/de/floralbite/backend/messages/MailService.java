@@ -13,6 +13,10 @@ public class MailService {
     private final JavaMailSender mailSender;
     @Value("${HETZNER_USER}")
     private String fromAddress;
+    @Value("${MAIL_REQUEST}")
+    private String mailRequest;
+    @Value("${MAIL_FEEDBACK}")
+    private String mailFeedback;
 
     public MailService(MessageRepo messageRepo, IdService idService, JavaMailSender mailSender) {
         this.messageRepo = messageRepo;
@@ -32,10 +36,10 @@ public class MailService {
     public void sendMailToOwner(Message message) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         if (message.subject().equals("request")) {
-            mailMessage.setTo("anfrage@floralbite.de");
+            mailMessage.setTo(mailRequest);
             mailMessage.setSubject("Neue Anfrage von " + message.name());
         } else if (message.subject().equals("feedback")) {
-            mailMessage.setTo("feedback@floralbite.de");
+            mailMessage.setTo(mailFeedback);
             mailMessage.setSubject("Neues Feedback von " + message.name());
         } else {
             mailMessage.setTo(fromAddress);
