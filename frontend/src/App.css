@@ -22,14 +22,9 @@ main {
   padding: 4rem;
 }
 img.placeholderLogo {
-  height: 9rem;
+  height: 3rem;
   width: auto;
-  margin: 0.7rem;
-}
-img.placeholderTitle {
-  height: 8rem;
-  width: auto;
-  margin: 0.7rem;
+  margin-bottom: 9rem;
 }
 img.placeholderJulia {
    height: 27rem;

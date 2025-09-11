@@ -57,36 +57,24 @@ function App() {
 
   return (
     <>
-        {location.pathname !== "/" ? <Header/> : {}}
+        {location.pathname !== "/" ? <Header/> : null}
         <main>
             <Routes>
                 <Route path="/" element={<PlaceholderPage/>}/>
                 <Route path="/adminlogin" element={<LoginPage/>}/>
 
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/home" element={<HomePage/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/offer" element={<OfferPage/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/about" element={<AboutUsPage/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/gallery" element={<GalleryPage/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/contact" element={<ContactPage/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/admin" element={<AdminPage user={user}/>}/>
-                </Route>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/impressum" element={<ImpressumPage/>}/>
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/offer" element={<OfferPage />} />
+                    <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/admin" element={<AdminPage user={user} />} />
+                    <Route path="/impressum" element={<ImpressumPage />} />
                 </Route>
             </Routes>
         </main>
-        {location.pathname !== "/" ? <Footer/> : {}}
+        {location.pathname !== "/" ? <Footer/> : null}
     </>
   )
 }
