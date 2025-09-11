@@ -25,6 +25,7 @@ const baseThemes = {
 // Zuordnung von Pfaden zu Farbthemen
 const themeMap: Record<string, keyof typeof baseThemes> = {
     "/": "orange2",
+    "/home": "orange2",
     "/about": "rot",
     "/gallery": "orange1",
     "/admin": "green",
