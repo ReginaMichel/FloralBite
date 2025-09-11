@@ -24,8 +24,57 @@ export default function ContactForm() {
     const [message, setMessage] = useState("");
     const [sending, setSending] = useState(false);
 
+    // Einträge für Fehler bei den Textfeldern
+    const [errors, setErrors] = useState({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        message: "",
+    });
+
+    // Methode zur Validierung der Einträge:
+    function validate(): boolean {
+        const newErrors: typeof errors = { name: "", email: "", phoneNumber: "", message: "" };
+        let valid = true;
+
+        if (name.trim() === "") {
+            newErrors.name = "Name ist erforderlich.";
+            valid = false;
+        }
+        // Überprüft Inhalt der email Variable:
+        // ^                    Start
+        // [a-zA-Z0-9._%+-]+    Ein oder mehr Zeichen (+) aus a-zA-Z0-9._%+- für den Lokalen Teil vor der Domain
+        // @                    Genau ein @
+        // [a-zA-Z0-9.-]+       Ein oder mehr Zeichen (+) aus a-zA-Z0-9.- für die Domain
+        // \.                   Genau ein .
+        // [a-zA-Z]{2,}         Mindestens zwei Buchstaben für die Top-Level-Domain
+        // $                    Ende
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            newErrors.email = "Ungültige E-Mail-Adresse.";
+            valid = false;
+        }
+        // Überprüft Telefonnummer nur, wenn der Eintrag nicht leer ist.
+        // ^            Start
+        // [+0-9]       Genau ein Zeichen, das ein + oder eine Zahl ist
+        // [0-9\s\-()]* Beliebig viele Zeichen, die eine Ziffer, Leerzeichen, Bindestrich oder Klammer sein dürfen.
+        if (!(phoneNumber.trim() === "") && !/^[+0-9][0-9\s\-()]*$/.test(phoneNumber)) {
+            newErrors.phoneNumber = "Ungültige Telefonnummer";
+        }
+        if (message.trim() === "") {
+            newErrors.message = "Nachricht darf nicht leer sein.";
+            valid = false;
+        }
+        setErrors(newErrors);
+        return valid;
+    }
+
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        // Wenn Einträge nicht valide sind, bricht es ab.
+        if (!validate()) return;
+
         setSending(true);
         try {
             await axios.post(`/api/contact`, {
@@ -43,6 +92,7 @@ export default function ContactForm() {
             setPhoneNumber("");
             setSubject("");
             setMessage("");
+            setErrors({name: "", email: "", phoneNumber: "", message: ""});
             setSending(false);
         }
     }
@@ -63,6 +113,8 @@ export default function ContactForm() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
+                        error={!!errors.name}
+                        helperText={errors.name}
                         fullWidth
                         slotProps={{
                             input: {
@@ -101,6 +153,8 @@ export default function ContactForm() {
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
                         required
+                        error={!!errors.email}
+                        helperText={errors.email}
                         slotProps={{
                             input: {
                                 startAdornment: <InputAdornment position="start"><MailOutlinedIcon /></InputAdornment>,
@@ -113,6 +167,8 @@ export default function ContactForm() {
                         label="Telefonnummer (optional)"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
+                        error={!!errors.phoneNumber}
+                        helperText={errors.phoneNumber}
                         fullWidth
                         slotProps={{
                             input: {
@@ -129,6 +185,8 @@ export default function ContactForm() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
+                error={!!errors.message}
+                helperText={errors.message}
                 fullWidth
                 multiline
                 rows={8}

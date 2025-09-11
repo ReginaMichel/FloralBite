@@ -1,4 +1,5 @@
 import type {UserModel} from "../models/UserModel.ts";
+import {Link} from "react-router-dom";
 
 type AdminPageProps = {
     user: UserModel|undefined|null;
@@ -6,13 +7,20 @@ type AdminPageProps = {
 
 export default function AdminPage(props: Readonly<AdminPageProps>) {
 
+    function logout(){
+        const host:string = window.location.host === "localhost:5173" ?
+            "http://localhost:8080" : window.location.origin
+        window.open(host + "/logout", "_self")
+    }
+
     return (
-        <div>
-            <img src={"/assets/placeholderLogo.png"} alt={"Vorläufiges Logo von Floral Bite"} className={"placeholder"}/>
-            <img src={"/assets/placeholderTitle.png"} alt={"Vorläufiger Schriftzug von Floral Bite"} className={"placeholder"} width={"50%"}/>
-            <h1 className={"placeholder"}>{"Hallo " + props?.user?.firstName + ","}</h1>
-            <h2 className={"placeholder"}>du bist erfolgreich auf der Admin-Seite gelandet. Hier gibt es aktuell noch nichts zu
-            sehen, aber es wird bestimmt bald sehr toll.</h2>
+        <div className={"textCentered"}>
+            <h1>{"Hallo " + props?.user?.firstName + ","}</h1>
+            <p>du bist erfolgreich auf der Admin-Seite gelandet. Hier gibt es aktuell noch
+                nicht viel zu sehen, aber du kannst dir gerne schon mal den aktuellen Stand der Website anschauen:</p>
+            <button className={"placeholder"}><Link to={"/home"}>Home</Link></button>
+            <p>Wenn du dich wieder ausloggen möchtest, kannst du das hier tun:</p>
+            <button className={"placeholder"} onClick={logout}>Abmelden</button>
         </div>
     );
 }

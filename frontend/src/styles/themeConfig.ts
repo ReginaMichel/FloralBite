@@ -17,14 +17,14 @@ const baseThemes = {
     },
     orange2: {
         headerBackground: "/assets/header_01.webp",
-        background: "246, 209, 174",   // #F6D1AE
-        linkColor: "166, 82, 0",       // #A65200
+        background: "255, 225, 164",   // background: #FFE1A4;
+        linkColor: "166, 82, 0",       //
     },
 };
 
 // Zuordnung von Pfaden zu Farbthemen
 const themeMap: Record<string, keyof typeof baseThemes> = {
-    "/": "rot",
+    "/": "orange2",
     "/about": "rot",
     "/gallery": "orange1",
     "/admin": "green",

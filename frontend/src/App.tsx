@@ -1,7 +1,6 @@
 import './App.css';
 import './styles/colors.css';
 import {themes} from "./styles/themeConfig.ts";
-import PlaceHolderPage from "./pages/PlaceholderPage.tsx";
 import AdminPage from "./pages/AdminPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ImpressumPage from "./pages/ImpressumPage.tsx";
@@ -11,11 +10,13 @@ import axios from "axios";
 import ProtectedRoute from "./security/ProtectedRoute.tsx";
 import type {UserModel} from "./models/UserModel.ts";
 import Footer from "./components/Footer.tsx";
+import PlaceholderPage from "./pages/PlaceholderPage.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import Header from './components/Header.tsx';
 import OfferPage from "./pages/OfferPage.tsx";
 import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
 
 function App() {
 
@@ -56,22 +57,24 @@ function App() {
 
   return (
     <>
-        <Header/>
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Header/> : null}
         <main>
             <Routes>
-                <Route path="/" element={<PlaceHolderPage/>}/>
-                <Route path="/offer" element={<OfferPage/>}/>
-                <Route path="/about" element={<AboutUsPage/>}/>
-                <Route path="/gallery" element={<GalleryPage/>}/>
-                <Route path="/contact" element={<ContactPage/>}/>
+                <Route path="/" element={<PlaceholderPage/>}/>
                 <Route path="/adminlogin" element={<LoginPage/>}/>
-                <Route element = {<ProtectedRoute user={user}/>}>
-                    <Route path="/admin" element={<AdminPage user={user}/>}/>
+
+                <Route element={<ProtectedRoute user={user} />}>
+                    <Route path="/home" element={<HomePage />} />
+                    <Route path="/offer" element={<OfferPage />} />
+                    <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/admin" element={<AdminPage user={user} />} />
+                    <Route path="/impressum" element={<ImpressumPage />} />
                 </Route>
-                <Route path="/impressum" element={<ImpressumPage/>}/>
             </Routes>
         </main>
-        <Footer/>
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Footer/> : null}
     </>
   )
 }

@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <footer>
             <div className={"left"}>
-                <Link to={"/"}>Home</Link>
+                <Link to={"/home"}>Home</Link>
                 <Link to={"/offer"}>Angebot</Link>
                 <Link to={"/about"}>Über uns</Link>
                 <Link to={"/gallery"}>Galerie</Link>
