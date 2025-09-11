@@ -47,7 +47,6 @@ h1, h2, h3, p {
 button {
   border: 1px solid transparent;
   font-size: 1rem;
-  font-weight: 500;
   font-family: inherit;
   background-color: #f9f9f9;
   cursor: pointer;
@@ -68,7 +67,6 @@ button.placeholder {
   border-radius: 8px;
   background-color: #66966D;
   color: #254038;
-  font-weight: bold;
   font-size: 1.3rem;
 }
 
