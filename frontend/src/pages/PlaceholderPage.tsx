@@ -13,9 +13,8 @@ export default function PlaceholderPage() {
                 </Grid>
                 <Grid size={{xs: 12, sm: 7}}>
                     <h1>Willkommen bei FloralBite</h1>
-                    <p>Schön, dass du hier bist. Die Website befindet sich noch im Aufbau. Wenn du Fragen hast, kannst du dich gerne bei mir melden:{" "}
-                        <a href="mailto:info@floralbite.de">info@floralbite.de</a>
-                    </p>
+                    <p>Schön, dass du hier bist. Die Website befindet sich noch im Aufbau. Wenn du Fragen hast, kannst
+                        du dich gerne an Julia Schreck wenden.</p>
                 </Grid>
             </Grid>
         </>
