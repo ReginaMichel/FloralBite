@@ -253,6 +253,10 @@ button.contactIcon {
 img.logoHome {
   width: 100%;
 }
+img.pictureJulia {
+  width: 100%;
+  border-radius: 0.7rem;
+}
 div.textCentered {
   text-align: center;
 }
