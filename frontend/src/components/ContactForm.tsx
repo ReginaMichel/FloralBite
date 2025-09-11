@@ -42,6 +42,13 @@ export default function ContactForm() {
             valid = false;
         }
         // Überprüft Inhalt der email Variable:
+        // ^                    Start
+        // [a-zA-Z0-9._%+-]+    Ein oder mehr Zeichen (+) aus a-zA-Z0-9._%+- für den Lokalen Teil vor der Domain
+        // @                    Genau ein @
+        // [a-zA-Z0-9.-]+       Ein oder mehr Zeichen (+) aus a-zA-Z0-9.- für die Domain
+        // \.                   Genau ein .
+        // [a-zA-Z]{2,}         Mindestens zwei Buchstaben für die Top-Level-Domain
+        // $                    Ende
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             newErrors.email = "Ungültige E-Mail-Adresse.";
