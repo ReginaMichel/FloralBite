@@ -42,14 +42,8 @@ export default function ContactForm() {
             valid = false;
         }
         // Überprüft Inhalt der email Variable:
-        // ^            Start
-        // [^\s@]+      Mindestens ein Zeichen, das kein Leerzeichen und kein @ ist
-        // @            Genau ein @
-        // [^\s@]+      Mindestens ein Zeichen, das kein Leerzeichen und kein @ ist
-        // \.           Genau ein Punkt
-        // [^\s@]+      Mindestens ein Zeichen, das kein Leerzeichen und kein @ ist
-        // $            Ende
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
             newErrors.email = "Ungültige E-Mail-Adresse.";
             valid = false;
         }
