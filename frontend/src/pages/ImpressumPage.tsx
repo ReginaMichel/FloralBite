@@ -1,14 +1,14 @@
 export default function ImpressumPage() {
 
     return (
-        <>
+        <div className={"textCentered"}>
             <div className="note">
                 <h1>Hinweis</h1>
-                <h2>Floral Bite und diese Website befinden sich noch im Aufbau. Es werden keine Dienstleistungen angeboten.
+                <p>Floral Bite und diese Website befinden sich noch im Aufbau. Es werden keine Dienstleistungen angeboten.
                     Falls Sie Fragen haben, können Sie uns über{" "}
                     <a href="mailto:info@floralbite.de">info@floralbite.de</a>
                     {" "}erreichen.
-                </h2>
+                </p>
             </div>
             <div className="impressum">
                 <h1>Impressum</h1>
@@ -24,6 +24,6 @@ export default function ImpressumPage() {
                     E-Mail:{" "}<a href="mailto:info@floralbite.de">info@floralbite.de</a>
                 </p>
             </div>
-        </>
+        </div>
     );
 }

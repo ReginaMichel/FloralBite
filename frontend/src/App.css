@@ -209,3 +209,6 @@ button.contactIcon {
 img.logoHome {
   width: 100%;
 }
+div.textCentered {
+  text-align: center;
+}

@@ -14,7 +14,7 @@ export default function AdminPage(props: Readonly<AdminPageProps>) {
     }
 
     return (
-        <div>
+        <div className={"textCentered"}>
             <h1>{"Hallo " + props?.user?.firstName + ","}</h1>
             <p>du bist erfolgreich auf der Admin-Seite gelandet. Hier gibt es aktuell noch
                 nicht viel zu sehen, aber du kannst dir gerne schon mal den aktuellen Stand der Website anschauen:</p>
