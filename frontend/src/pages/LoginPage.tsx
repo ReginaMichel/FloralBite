@@ -8,10 +8,9 @@ export default function LoginPage() {
 
     return (
         <div>
-            <img src={"/assets/placeholderLogo.png"} alt={"Vorläufiges Logo von Floral Bite"} className={"placeholder"} width={"10%"}/>
-            <img src={"/assets/placeholderTitle.png"} alt={"Vorläufiger Schriftzug von Floral Bite"} className={"placeholder"} width={"25%"}/>
-            <h2 className={"placeholder"}>Hallo!</h2>
-            <h2 className={"placeholder"}>Bitte klicke auf diesen Button, um dich über deinen Google-Account einzuloggen:</h2>
+            <img src={"/assets/Element 100@4x.webp"} alt={"Logo von Floral Bite"} className={"placeholderLogo"}/>
+            <h1>Hallo!</h1>
+            <p>Bitte klicke auf diesen Button, um dich über deinen Google-Account einzuloggen:</p>
             <button className={"placeholder"} onClick={login}>Anmelden</button>
         </div>
     );

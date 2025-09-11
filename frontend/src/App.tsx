@@ -57,7 +57,7 @@ function App() {
 
   return (
     <>
-        {location.pathname !== "/" ? <Header/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Header/> : null}
         <main>
             <Routes>
                 <Route path="/" element={<PlaceholderPage/>}/>
@@ -74,7 +74,7 @@ function App() {
                 </Route>
             </Routes>
         </main>
-        {location.pathname !== "/" ? <Footer/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Footer/> : null}
     </>
   )
 }
