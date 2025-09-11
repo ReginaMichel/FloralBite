@@ -1,4 +1,5 @@
 import {Grid, Box} from "@mui/material";
+import Gallery from "../components/Gallery.tsx";
 
 export default function HomePage() {
     return (
@@ -17,6 +18,11 @@ export default function HomePage() {
                         geht.</p>
                 </Grid>
             </Grid>
+            <h2>Galerie</h2>
+            <div className="galleryPage">
+                <Gallery type={"herzh"} title={""}/>
+                <Gallery type={"suess"} title={""}/>
+            </div>
         </>
     )
 }
