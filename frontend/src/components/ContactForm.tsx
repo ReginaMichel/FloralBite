@@ -56,7 +56,7 @@ export default function ContactForm() {
         }
         // Überprüft Telefonnummer nur, wenn der Eintrag nicht leer ist.
         // ^            Start
-        // [+0-9]       Mindestens ein Zeichen, das ein + oder eine Zahl ist
+        // [+0-9]       Genau ein Zeichen, das ein + oder eine Zahl ist
         // [0-9\s\-()]* Beliebig viele Zeichen, die eine Ziffer, Leerzeichen, Bindestrich oder Klammer sein dürfen.
         if (!(phoneNumber.trim() === "") && !/^[+0-9][0-9\s\-()]*$/.test(phoneNumber)) {
             newErrors.phoneNumber = "Ungültige Telefonnummer";
