@@ -7,10 +7,10 @@ h1, h2, h3 {
   font-family: 'Playfair Display', serif;
 }
 h1 {
-  font-size: 3rem; /* 2 */
+  font-size: 3.5rem; /* 2 */
 }
 h2 {
-  font-size: 2rem; /* 1.5 */
+  font-size: 2.75rem; /* 1.5 */
 }
 h3 {
   font-size: 1.75rem; /* 1.25 */
@@ -19,7 +19,24 @@ p {
   font-size: 1.25rem; /* 1.125 */
 }
 main {
-  padding: 4rem;
+  padding: 3rem;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem; /* 2 */
+  }
+  h2 {
+    font-size: 2rem; /* 1.5 */
+  }
+  h3 {
+    font-size: 1.5rem; /* 1.25 */
+  }
+  p {
+    font-size: 1.25rem; /* 1.125 */
+  }
+  main {
+    padding: 1.5rem;
+  }
 }
 img.placeholderLogo {
   height: 3rem;
@@ -127,15 +144,32 @@ a:hover {
   text-decoration: underline;
 }
 
+
+div.galleryComponent{
+  width: 100%;
+  box-sizing: border-box;
+}
 h1.galleryTitle {
   color: rgb(var(--link-color));
 }
 div.galleryContainer {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden; /* verhindert, dass zu breite Kinder den Rahmen sprengen */
+  box-sizing: border-box;
   position: relative;
   padding-left: 1rem;
   padding-right: 1rem;
 }
+@media (max-width: 600px) {
+  div.galleryContainer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 div.galleryContent {
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   overflow-x: auto;
   gap: 1rem;
@@ -153,6 +187,11 @@ img.galleryImages {
   scroll-snap-align: start; /* "snapping" beim Scrollen. ist optional kann man mal testen. */
   border-radius: 0.4rem;
 }
+@media (max-width: 600px) {
+  img.galleryImages {
+    height: 10rem;
+  }
+}
 button.scrollButton {
   position: absolute;
   color: rgb(var(--link-color));
@@ -168,6 +207,11 @@ button.scrollButton {
   border-width: 0; /* vorübergehend disabled */
   top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
   transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
+}
+@media (max-width: 600px) {
+  button.scrollButton {
+    display: none;
+  }
 }
 button.scrollButton:hover {
   border-color: rgb(var(--link-color));
@@ -208,6 +252,10 @@ button.contactIcon {
 
 img.logoHome {
   width: 100%;
+}
+img.pictureJulia {
+  width: 100%;
+  border-radius: 0.7rem;
 }
 div.textCentered {
   text-align: center;
