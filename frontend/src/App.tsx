@@ -10,6 +10,7 @@ import axios from "axios";
 import ProtectedRoute from "./security/ProtectedRoute.tsx";
 import type {UserModel} from "./models/UserModel.ts";
 import Footer from "./components/Footer.tsx";
+import PlaceholderPage from "./pages/PlaceholderPage.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import Header from './components/Header.tsx';
 import OfferPage from "./pages/OfferPage.tsx";
@@ -56,22 +57,36 @@ function App() {
 
   return (
     <>
-        <Header/>
+        {location.pathname !== "/" ? <Header/> : {}}
         <main>
             <Routes>
-                <Route path="/" element={<HomePage/>}/>
-                <Route path="/offer" element={<OfferPage/>}/>
-                <Route path="/about" element={<AboutUsPage/>}/>
-                <Route path="/gallery" element={<GalleryPage/>}/>
-                <Route path="/contact" element={<ContactPage/>}/>
+                <Route path="/" element={<PlaceholderPage/>}/>
                 <Route path="/adminlogin" element={<LoginPage/>}/>
+
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/home" element={<HomePage/>}/>
+                </Route>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/offer" element={<OfferPage/>}/>
+                </Route>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/about" element={<AboutUsPage/>}/>
+                </Route>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/gallery" element={<GalleryPage/>}/>
+                </Route>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/contact" element={<ContactPage/>}/>
+                </Route>
                 <Route element = {<ProtectedRoute user={user}/>}>
                     <Route path="/admin" element={<AdminPage user={user}/>}/>
                 </Route>
-                <Route path="/impressum" element={<ImpressumPage/>}/>
+                <Route element = {<ProtectedRoute user={user}/>}>
+                    <Route path="/impressum" element={<ImpressumPage/>}/>
+                </Route>
             </Routes>
         </main>
-        <Footer/>
+        {location.pathname !== "/" ? <Footer/> : {}}
     </>
   )
 }
