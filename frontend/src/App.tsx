@@ -17,6 +17,7 @@ import OfferPage from "./pages/OfferPage.tsx";
 import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
+import {useMediaQuery} from '@mui/material';
 
 function App() {
 
@@ -55,9 +56,12 @@ function App() {
         root.style.setProperty('--header-bg', `url(${theme.headerBackground})`);
     }, [location.pathname]);
 
+    const isMobile = useMediaQuery('(max-width: 600px)');
+
   return (
     <>
-        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Header/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ?
+            (isMobile ? <MobileHeader/> : <Header/>) : null}
         <main>
             <Routes>
                 <Route path="/" element={<PlaceholderPage/>}/>
@@ -74,7 +78,8 @@ function App() {
                 </Route>
             </Routes>
         </main>
-        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Footer/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ?
+            (isMobile ? <MobileFooter/> : <Footer/>) : null}
     </>
   )
 }
