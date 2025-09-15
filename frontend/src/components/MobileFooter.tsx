@@ -1,24 +1,31 @@
 import {Link} from "react-router-dom";
-import {Stack} from "@mui/material";
+import {Stack, Box} from "@mui/material";
 
 export default function MobileFooter() {
     return (
         <Stack
-            spacing={2}
-            sx={{ width: '100%' }}>
-            <img src={"/assets/Element 95@4x.webp"} alt={"Logo-Schriftzug von FloralBite"}/>
-            <footer>
-                <div className={"left"}>
-                    <Link to={"/home"}>Home</Link>
-                    <Link to={"/offer"}>Angebot</Link>
-                    <Link to={"/about"}>Über uns</Link>
-                    <Link to={"/gallery"}>Galerie</Link>
-                    <Link to={"/contact"}>Kontakt</Link>
-                </div>
-                <div className={"right"}>
-                    <Link to={"/impressum"}>Impressum</Link>
-                </div>
-            </footer>
+            spacing={0}
+            sx={{ width: '100%', color: 'white !important', '& h3': {color: 'white !important'},
+                '& a': {color: 'white !important'}, '& p': {color: 'white !important', fontSize: '1rem !important'},
+                backgroundColor: 'var(--dark-green)', padding: '2rem'}}>
+            <Box sx={{ px: '0' }}>
+                <img src={"/assets/Element 95@4x.webp"} alt={"Logo-Schriftzug von FloralBite"} width={'40%'}/>
+            </Box>
+            <h3>Webangebot</h3>
+            <Link to={"/home"}>Home</Link>
+            <Link to={"/offer"}>Angebot</Link>
+            <Link to={"/about"}>Über uns</Link>
+            <Link to={"/gallery"}>Galerie</Link>
+            <Link to={"/contact"}>Kontakt</Link>
+            <h3>Rechtliches</h3>
+            <Link to={"/impressum"}>Impressum</Link>
+            <h3>Kontakt</h3>
+            <p>Julia Schreck<br/>
+                FloralBite - Catering<br/>
+                Niebergallstraße 11<br/>
+                64331 Weiterstadt</p>
+            <p>Telefon:<br/>
+                E-Mail:{" "}<a href="mailto:info@floralbite.de">info@floralbite.de</a></p>
         </Stack>
     )
 }
