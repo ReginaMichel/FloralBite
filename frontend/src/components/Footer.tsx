@@ -11,7 +11,7 @@ export default function Footer() {
                 <Link to={"/kontakt"}>Kontakt</Link>
             </div>
             <div className={"right"}>
-                <Link to={"/datenschutz"}>Impressum</Link>
+                <Link to={"/datenschutz"}>Datenschutz</Link>
                 <Link to={"/impressum"}>Impressum</Link>
             </div>
         </footer>
