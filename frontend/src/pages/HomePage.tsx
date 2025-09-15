@@ -1,6 +1,7 @@
 import {Grid, Box} from "@mui/material";
 import Gallery from "../components/Gallery.tsx";
 import DesignBar from "../components/DesignBar.tsx";
+import {Link} from "react-router-dom";
 
 export default function HomePage() {
     return (
@@ -37,6 +38,14 @@ export default function HomePage() {
             </Grid>
             <Box sx={{ px: {xs: '0', sm: '30%'}, py: {xs: '4%', sm: '3%'}}}>
                 <img src={"/assets/julia_001.webp"} alt={"Julia Schreck von FloralBite präsentiert eine kunstvolle Hochzeitstorte"} className={"pictureJulia"}/>
+            </Box>
+            <Box sx={{textAlign: "center", py: {xs: '4%', sm: '3%'}}}>
+                <h2 style={{marginTop: 0}}>Hungrig geworden?<br/>
+                    Kontaktiere mich fürs Catering
+                </h2>
+                <button className={"contactForm"}>
+                    <Link to={"/kontakt"}>Kontakt</Link>
+                </button>
             </Box>
         </>
     )
