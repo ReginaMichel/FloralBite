@@ -61,6 +61,13 @@ public class MailService {
                 "Viele Grüße" + "\n" + "Julia von FloralBite" + "\n\n" +
                 "Deine Nachricht:" + "\n\"" + message.message() + "\"");
         mailMessage.setFrom(fromAddress);
+        if (message.subject().equals("request")) {
+            mailMessage.setCc(mailRequest);
+        } else if (message.subject().equals("feedback")) {
+            mailMessage.setCc(mailFeedback);
+        } else {
+            mailMessage.setCc(fromAddress);
+        }
         mailSender.send(mailMessage);
     }
 
