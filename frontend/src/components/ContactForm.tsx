@@ -189,7 +189,7 @@ export default function ContactForm() {
                 helperText={errors.message}
                 fullWidth
                 multiline
-                rows={8}
+                rows={10}
                 slotProps={{
                     input: {
                         startAdornment: <InputAdornment position="start"><ChatOutlinedIcon /></InputAdornment>,
