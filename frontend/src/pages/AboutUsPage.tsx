@@ -1,43 +1,25 @@
+import {Box, Grid} from "@mui/material";
+
 export default function AboutUsPage() {
     return (
         <div className="AboutUsPage">
-            <div className={"rowAlignment"}>
-                <img src={"/assets/PlaceholderJulia.jpg"} alt={"Bild von Julia Schreck"} className={"placeholderJulia"}/>
-                <div className={"textBox"}>
-                    <h1>Hi, ich bin Julia von Floral Bite</h1>
-                    <p className={"leftAlign"}>Ich habe Floral Bite ins Leben gerufen, weil ich wahnsinnig gerne für Menschen koche und backe
-                    und weil mir Tierschutz und Nachhaltigkeit am Herzen liegen. Lorem ipsum dolor sit amet, consetetur
-                        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                        amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-                        dolor sit amet, consetetur
-                        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                        amet, consetetur
-                        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                </div>
-            </div>
-            <div>
-                <p className={"leftAlign"}>
-                    Doch besteht Floral Bite nicht nur aus einer Person. Im Hintergrund haben viele Menschen dazu
-                    beigetragen, meinen Traum Realität werden zu lassen. Unterstützung von Familie und Freund*innen bla bla.
-                    Logo und Design der Website wurden von Katharina Konradi geschaffen. Gebaut und betrieben wird die
-                    Seite von Regina Michel. Lorem ipsum dolor sit amet, consetetur
-                    sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                    erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                    kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                    consetetur
-                    sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                    erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                    kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-            </div>
+            <Grid container spacing={1} alignItems={"center"}>
+                <Grid size={{xs: 12, sm: 5}}>
+                    <Box sx={{px: {xs: '0', sm: '12%'}}}>
+                        <img src={"/assets/julia_002.webp"}
+                             alt={"Julia Schreck von FloralBite präsentiert eine kunstvolle Hochzeitstorte"}
+                             className={"pictureJulia"}/>
+                    </Box>
+                </Grid>
+                <Grid size={{xs: 12, sm: 7}}>
+                    <h2>Hi, ich bin Julia</h2>
+                    <p>Ich habe FloralBite ins Leben gerufen, weil ich wahnsinnig gerne für Menschen koche und backe
+                        und weil mir Tierschutz und Nachhaltigkeit am Herzen liegen.</p>
+                    <p>Im Hintergrund tragen viele Menschen dazu bei, meinen Traum Wirklichkeit werden zu lassen.
+                        Logo und Design wurden von Katharina Konradi geschaffen. Die Webseite wird von Regina Michel
+                        gebaut und betrieben.</p>
+                </Grid>
+            </Grid>
         </div>
     )
 }
