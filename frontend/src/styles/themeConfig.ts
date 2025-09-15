@@ -26,13 +26,13 @@ const baseThemes = {
 const themeMap: Record<string, keyof typeof baseThemes> = {
     "/": "orange2",
     "/home": "orange2",
-    "/about": "rot",
-    "/gallery": "orange1",
+    "/ueber-uns": "rot",
+    "/galerie": "orange1",
     "/admin": "green",
     "/adminlogin": "green",
     "/impressum": "green",
-    "/contact": "orange2",
-    "/offer": "orange2",
+    "/kontakt": "orange2",
+    "/angebot": "orange2",
 };
 
 // Gibt die Farbthemen der Pfade zurück
