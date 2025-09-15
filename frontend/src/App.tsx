@@ -71,11 +71,12 @@ function App() {
 
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route path="/home" element={<HomePage />} />
-                    <Route path="/offer" element={<OfferPage />} />
-                    <Route path="/about" element={<AboutUsPage />} />
-                    <Route path="/gallery" element={<GalleryPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/angebot" element={<OfferPage />} />
+                    <Route path="/ueber-uns" element={<AboutUsPage />} />
+                    <Route path="/galerie" element={<GalleryPage />} />
+                    <Route path="/kontakt" element={<ContactPage />} />
                     <Route path="/admin" element={<AdminPage user={user} />} />
+                    <Route path="/datenschutz" element={<PlaceholderPage />} />
                     <Route path="/impressum" element={<ImpressumPage />} />
                 </Route>
             </Routes>

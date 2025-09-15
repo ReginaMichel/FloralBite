@@ -13,11 +13,12 @@ export default function MobileFooter() {
             </Box>
             <h3>Webangebot</h3>
             <Link to={"/home"}>Home</Link>
-            <Link to={"/offer"}>Angebot</Link>
-            <Link to={"/about"}>Über uns</Link>
-            <Link to={"/gallery"}>Galerie</Link>
-            <Link to={"/contact"}>Kontakt</Link>
+            <Link to={"/angebot"}>Angebot</Link>
+            <Link to={"/ueber-uns"}>Über uns</Link>
+            <Link to={"/galerie"}>Galerie</Link>
+            <Link to={"/kontakt"}>Kontakt</Link>
             <h3>Rechtliches</h3>
+            <Link to={"/datenschutz"}>Datenschutz</Link>
             <Link to={"/impressum"}>Impressum</Link>
             <h3>Kontakt</h3>
             <p>Julia Schreck<br/>

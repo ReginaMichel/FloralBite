@@ -4,10 +4,10 @@ export default function NavBar() {
     return (
         <nav>
             <Link to={"/home"}>Home</Link>
-            <Link to={"/offer"}>Angebot</Link>
-            <Link to={"/about"}>Über uns</Link>
-            <Link to={"/gallery"}>Galerie</Link>
-            <Link to={"/contact"}>Kontakt</Link>
+            <Link to={"/angebot"}>Angebot</Link>
+            <Link to={"/ueber-uns"}>Über uns</Link>
+            <Link to={"/galerie"}>Galerie</Link>
+            <Link to={"/kontakt"}>Kontakt</Link>
         </nav>
     )
 }
