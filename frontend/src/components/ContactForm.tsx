@@ -116,6 +116,17 @@ export default function ContactForm() {
                         error={!!errors.name}
                         helperText={errors.name}
                         fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
                         slotProps={{
                             input: {
                                 startAdornment: <InputAdornment position="start"><PersonOutlineOutlinedIcon /></InputAdornment>,
@@ -130,6 +141,17 @@ export default function ContactForm() {
                         onChange={(e) => setSubject(e.target.value)}
                         select
                         fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
                         required
                         slotProps={{
                             input: {
@@ -152,6 +174,17 @@ export default function ContactForm() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
                         required
                         error={!!errors.email}
                         helperText={errors.email}
@@ -170,6 +203,17 @@ export default function ContactForm() {
                         error={!!errors.phoneNumber}
                         helperText={errors.phoneNumber}
                         fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
                         slotProps={{
                             input: {
                                 startAdornment: <InputAdornment position="start"><PhoneInTalkOutlinedIcon /></InputAdornment>,
@@ -188,6 +232,17 @@ export default function ContactForm() {
                 error={!!errors.message}
                 helperText={errors.message}
                 fullWidth
+                sx={{
+                    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'var(--dark-green)',
+                    },
+                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'var(--sage-green)',
+                    },
+                    '& label.Mui-focused': {
+                        color: 'var(--sage-green)',
+                    },
+                }}
                 multiline
                 rows={10}
                 slotProps={{
@@ -203,6 +258,12 @@ export default function ContactForm() {
                     <Checkbox
                         checked={agreement}
                         onChange={(e) => setAgreement(e.target.checked)}
+                        sx={{
+                            color: 'var(--sage-green)',
+                            '&.Mui-checked': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
                     />
                 }
                 label="Ich habe die DSGVO-Erklärung gelesen und bin mit der Speicherung und Verarbeitung meiner Daten einverstanden."
