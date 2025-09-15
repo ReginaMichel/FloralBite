@@ -86,6 +86,17 @@ button.placeholder {
   color: #254038;
   font-size: 1.3rem;
 }
+button.contactForm {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--light-sage-green);
+  color: var(--dark-green);
+  border-radius: 0.4rem;
+  font-weight: 600;
+  width: auto;
+}
+button.contactForm:disabled {
+  opacity: 0.5;
+}
 @media (min-width: 601px) {
   header {
     background-size: cover;

@@ -209,7 +209,7 @@ export default function ContactForm() {
             />
 
             {/* Button */}
-            <button disabled={!agreement||sending} type="submit">{sending ? "Wird gesendet…" : "Absenden"}</button>
+            <button disabled={!agreement||sending} type="submit" className={"contactForm"}>{sending ? "Wird gesendet…" : "Absenden"}</button>
         </Stack>
     );
 }
