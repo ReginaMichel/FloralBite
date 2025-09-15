@@ -2,7 +2,7 @@
 const baseThemes = {
     rot: {
         headerBackground: "/assets/header_03.webp",
-        background: "239, 202, 200",   // #EFCAC8
+        background: "244, 197, 196", //"234, 137, 134", // "239, 202, 200",   // #EFCAC8
         linkColor: "17, 45, 33" //"128, 47, 47",      // #802F2F
     },
     orange1: {
@@ -27,7 +27,7 @@ const themeMap: Record<string, keyof typeof baseThemes> = {
     "/": "orange2",
     "/home": "orange2",
     "/ueber-uns": "rot",
-    "/galerie": "orange1",
+    "/galerie": "rot",
     "/admin": "green",
     "/adminlogin": "green",
     "/impressum": "green",
