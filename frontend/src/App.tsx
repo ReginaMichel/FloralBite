@@ -17,6 +17,9 @@ import OfferPage from "./pages/OfferPage.tsx";
 import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
+import {useMediaQuery} from '@mui/material';
+import MobileFooter from "./components/MobileFooter.tsx";
+import MobileHeader from "./components/MobileHeader.tsx";
 
 function App() {
 
@@ -55,9 +58,12 @@ function App() {
         root.style.setProperty('--header-bg', `url(${theme.headerBackground})`);
     }, [location.pathname]);
 
+    const isMobile = useMediaQuery('(max-width: 600px)');
+
   return (
     <>
-        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Header/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ?
+            (isMobile ? <MobileHeader/> : <Header/>) : null}
         <main>
             <Routes>
                 <Route path="/" element={<PlaceholderPage/>}/>
@@ -65,16 +71,18 @@ function App() {
 
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route path="/home" element={<HomePage />} />
-                    <Route path="/offer" element={<OfferPage />} />
-                    <Route path="/about" element={<AboutUsPage />} />
-                    <Route path="/gallery" element={<GalleryPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/angebot" element={<OfferPage />} />
+                    <Route path="/ueber-uns" element={<AboutUsPage />} />
+                    <Route path="/galerie" element={<GalleryPage />} />
+                    <Route path="/kontakt" element={<ContactPage />} />
                     <Route path="/admin" element={<AdminPage user={user} />} />
+                    <Route path="/datenschutz" element={<PlaceholderPage />} />
                     <Route path="/impressum" element={<ImpressumPage />} />
                 </Route>
             </Routes>
         </main>
-        {location.pathname !== "/" && location.pathname !== "/adminlogin" ? <Footer/> : null}
+        {location.pathname !== "/" && location.pathname !== "/adminlogin" ?
+            (isMobile ? <MobileFooter/> : <Footer/>) : null}
     </>
   )
 }

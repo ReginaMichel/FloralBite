@@ -14,7 +14,7 @@ export default function ImpressumPage() {
                 <h1>Impressum</h1>
                 <p>
                     Julia Schreck<br/>
-                    Floral Bite - Catering<br/>
+                    FloralBite - Catering<br/>
                     Niebergallstraße 11<br/>
                     64331 Weiterstadt
                 </p>
