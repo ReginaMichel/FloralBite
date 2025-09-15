@@ -18,6 +18,8 @@ import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import {useMediaQuery} from '@mui/material';
+import MobileFooter from "./components/MobileFooter.tsx";
+import MobileHeader from "./components/MobileHeader.tsx";
 
 function App() {
 
