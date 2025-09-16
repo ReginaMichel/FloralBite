@@ -125,7 +125,7 @@ export default function Gallery(props:Readonly<GalleryProps>) {
     // disabled gesetzt werden, weil die Bilder zu lange brauchen und die Galerie bei der Prüfung noch "leer" ist.
     return (
         <div className="galleryComponent">
-            <h1 className="galleryTitle">{props.title}</h1>
+            <h2 className="galleryTitle">{props.title}</h2>
             <div className="galleryContainer">
                 <button className={"scrollButton left"} onClick={scrollLeft} disabled={buttonLeftDisabled}>
                     <FaChevronLeft />
