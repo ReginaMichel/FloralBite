@@ -25,7 +25,7 @@ export default function MobileFooter() {
             <p>Telefon:<br/>
                 E-Mail:{" "}<a href="mailto:info@floralbite.de">info@floralbite.de</a></p>
             <h3>Social Media</h3>
-            <p>Instagram</p>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
             <h3>Rechtliches</h3>
             <Link to={"/datenschutz"}>Datenschutz</Link>
             <Link to={"/impressum"}>Impressum</Link>
