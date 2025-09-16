@@ -1,0 +1,1 @@
+export type OfferCategory = "cold" | "menu" | "sweet" | "savory" | "special" | "party";
