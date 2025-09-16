@@ -271,3 +271,22 @@ img.pictureJulia {
 div.textCentered {
   text-align: center;
 }
+
+div.loadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.loadingSpinner img {
+  animation: spin 1s linear infinite;
+  width: 2.5rem;
+}
+/* Keyframes sind CSS-Regeln, mit denen man Animationen definieren kann.*/
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
