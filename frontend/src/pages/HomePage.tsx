@@ -2,6 +2,7 @@ import {Grid, Box} from "@mui/material";
 import Gallery from "../components/Gallery.tsx";
 import DesignBar from "../components/DesignBar.tsx";
 import {Link} from "react-router-dom";
+import InstagramPromotion from "../components/InstagramPromotion.tsx";
 
 export default function HomePage() {
     return (
@@ -28,7 +29,7 @@ export default function HomePage() {
             <DesignBar/>
             <Grid container spacing={0}>
                 <Grid size={{xs: 12, sm: 3}}>
-                    <h2>Info</h2>
+                    <h2 style={{marginTop: 0}}>Info</h2>
                 </Grid>
                 <Grid size={{xs: 12, sm: 9}}>
                     <p>Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -47,6 +48,8 @@ export default function HomePage() {
                     <Link to={"/kontakt"}>Kontakt</Link>
                 </button>
             </Box>
+            <DesignBar/>
+            <InstagramPromotion/>
         </>
     )
 }
