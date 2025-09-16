@@ -86,6 +86,17 @@ button.placeholder {
   color: #254038;
   font-size: 1.3rem;
 }
+button.contactForm {
+  padding: 0.6rem 1.2rem;
+  background-color: var(--light-sage-green);
+  color: var(--dark-green);
+  border-radius: 0.4rem;
+  font-weight: 600;
+  width: auto;
+}
+button.contactForm:disabled {
+  opacity: 0.5;
+}
 @media (min-width: 601px) {
   header {
     background-size: cover;
@@ -259,4 +270,23 @@ img.pictureJulia {
 }
 div.textCentered {
   text-align: center;
+}
+
+div.loadingSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.loadingSpinner img {
+  animation: spin 1s linear infinite;
+  width: 2.5rem;
+}
+/* Keyframes sind CSS-Regeln, mit denen man Animationen definieren kann.*/
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

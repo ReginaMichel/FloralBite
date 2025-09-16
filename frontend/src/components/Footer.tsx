@@ -5,12 +5,13 @@ export default function Footer() {
         <footer>
             <div className={"left"}>
                 <Link to={"/home"}>Home</Link>
-                <Link to={"/offer"}>Angebot</Link>
-                <Link to={"/about"}>Über uns</Link>
-                <Link to={"/gallery"}>Galerie</Link>
-                <Link to={"/contact"}>Kontakt</Link>
+                <Link to={"/angebot"}>Angebot</Link>
+                <Link to={"/ueber-uns"}>Über uns</Link>
+                <Link to={"/galerie"}>Galerie</Link>
+                <Link to={"/kontakt"}>Kontakt</Link>
             </div>
             <div className={"right"}>
+                <Link to={"/datenschutz"}>Datenschutz</Link>
                 <Link to={"/impressum"}>Impressum</Link>
             </div>
         </footer>

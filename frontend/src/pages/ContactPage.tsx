@@ -2,14 +2,17 @@ import ContactForm from "../components/ContactForm.tsx";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 import PhoneInTalkOutlinedIcon from '@mui/icons-material/PhoneInTalkOutlined';
+import {
+    Grid
+} from "@mui/material";
 
 export default function ContactPage() {
     return (
-        <div className="rowAlignment">
-            <div className="contactLeft">
-                <h1>Hungrig geworden?<br/>
+        <Grid container spacing={4} alignItems={"center"}>
+            <Grid size={{xs: 12, md: 6}}>
+                <h2 style={{marginTop:0}}>Hungrig geworden?<br/>
                     Ich freue mich auf deine Nachricht
-                </h1>
+                </h2>
                 <p>Du kannst mich gerne per Telefon, E-Mail oder über das Kontaktformular erreichen.</p>
                 <p>Egal ob es sich um Anfragen, Feedback, Wünsche oder Kritik handelt, ich freue mich,
                     von dir zu hören.</p>
@@ -25,10 +28,10 @@ export default function ContactPage() {
                     <button className="contactIcon" disabled={true}>
                         <PhoneInTalkOutlinedIcon/></button>
                     +49 xxx</div>
-            </div>
-            <div className="contactRight">
+            </Grid>
+            <Grid size={{xs: 12, md: 6}}>
                 <ContactForm/>
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }

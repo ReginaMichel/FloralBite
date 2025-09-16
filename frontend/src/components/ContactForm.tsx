@@ -6,6 +6,7 @@ import {
     TextField,
     Grid,
     InputAdornment,
+    Box
 } from "@mui/material";
 import {type FormEvent, useState} from "react";
 import axios from "axios";
@@ -14,6 +15,7 @@ import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined
 import MailOutlinedIcon from "@mui/icons-material/MailOutlined";
 import PhoneInTalkOutlinedIcon from "@mui/icons-material/PhoneInTalkOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
+import LoadingSpinner from "./LoadingSpinner.tsx";
 
 export default function ContactForm() {
     const [agreement, setAgreement] = useState(false);
@@ -98,118 +100,203 @@ export default function ContactForm() {
     }
 
     return (
-        <Stack
-            spacing={2}
-            sx={{ width: '100%' }}
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate>
+        <Box sx={{ position: 'relative' }}>
+            {/* Lade-Icon Overlay */}
+            {sending && (
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        inset: 0, // Kurzform für top/left/right/bottom: 0
+                        backgroundColor: 'rgba(255,255,255,0.7)', // halbtransparentes Weiß
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 10, // damit es definitiv über allem anderen liegt
+                    }}
+                >
+                    <LoadingSpinner />
+                </Box>
+            )}
+            {/* Stack mit Kontaktformular */}
+            <Stack
+                spacing={2}
+                sx={{width: '100%'}}
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate>
 
-            {/* Name & Anliegen */}
-            <Grid container spacing={2} sx={{ width: '100%' }}>
-                <Grid size={{xs: 12, sm: 6}}>
-                    <TextField
-                        label="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        error={!!errors.name}
-                        helperText={errors.name}
-                        fullWidth
-                        slotProps={{
-                            input: {
-                                startAdornment: <InputAdornment position="start"><PersonOutlineOutlinedIcon /></InputAdornment>,
-                            },
-                        }}
-                    />
+                {/* Name & Anliegen */}
+                <Grid container spacing={2} sx={{width: '100%'}}>
+                    <Grid size={{xs: 12, sm: 6}}>
+                        <TextField
+                            label="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            error={!!errors.name}
+                            helperText={errors.name}
+                            fullWidth
+                            sx={{
+                                '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--dark-green)',
+                                },
+                                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--sage-green)',
+                                },
+                                '& label.Mui-focused': {
+                                    color: 'var(--sage-green)',
+                                },
+                            }}
+                            slotProps={{
+                                input: {
+                                    startAdornment: <InputAdornment
+                                        position="start"><PersonOutlineOutlinedIcon/></InputAdornment>,
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid size={{xs: 12, sm: 6}}>
+                        <TextField
+                            label="Anliegen"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                            select
+                            fullWidth
+                            sx={{
+                                '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--dark-green)',
+                                },
+                                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--sage-green)',
+                                },
+                                '& label.Mui-focused': {
+                                    color: 'var(--sage-green)',
+                                },
+                            }}
+                            required
+                            slotProps={{
+                                input: {
+                                    startAdornment: <InputAdornment
+                                        position="start"><FeedbackOutlinedIcon/></InputAdornment>,
+                                },
+                            }}
+                        >
+                            <MenuItem value="request">Anfrage</MenuItem>
+                            <MenuItem value="feedback">Feedback</MenuItem>
+                            <MenuItem value="other">Sonstiges</MenuItem>
+                        </TextField>
+                    </Grid>
                 </Grid>
-                <Grid size={{xs: 12, sm: 6}}>
-                    <TextField
-                        label="Anliegen"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        select
-                        fullWidth
-                        required
-                        slotProps={{
-                            input: {
-                                startAdornment: <InputAdornment position="start"><FeedbackOutlinedIcon /></InputAdornment>,
-                            },
-                        }}
-                    >
-                        <MenuItem value="request">Anfrage</MenuItem>
-                        <MenuItem value="feedback">Feedback</MenuItem>
-                        <MenuItem value="other">Sonstiges</MenuItem>
-                    </TextField>
+
+                {/* E-Mail & Telefonnummer */}
+                <Grid container spacing={2}>
+                    <Grid size={{xs: 12, sm: 6}}>
+                        <TextField
+                            label="E-Mail-Adresse"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            fullWidth
+                            sx={{
+                                '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--dark-green)',
+                                },
+                                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--sage-green)',
+                                },
+                                '& label.Mui-focused': {
+                                    color: 'var(--sage-green)',
+                                },
+                            }}
+                            required
+                            error={!!errors.email}
+                            helperText={errors.email}
+                            slotProps={{
+                                input: {
+                                    startAdornment: <InputAdornment
+                                        position="start"><MailOutlinedIcon/></InputAdornment>,
+                                },
+                            }}
+                        />
+                    </Grid>
+                    <Grid size={{xs: 12, sm: 6}}>
+                        <TextField
+                            label="Telefonnummer (optional)"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            error={!!errors.phoneNumber}
+                            helperText={errors.phoneNumber}
+                            fullWidth
+                            sx={{
+                                '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--dark-green)',
+                                },
+                                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'var(--sage-green)',
+                                },
+                                '& label.Mui-focused': {
+                                    color: 'var(--sage-green)',
+                                },
+                            }}
+                            slotProps={{
+                                input: {
+                                    startAdornment: <InputAdornment
+                                        position="start"><PhoneInTalkOutlinedIcon/></InputAdornment>,
+                                },
+                            }}
+                        />
+                    </Grid>
                 </Grid>
-            </Grid>
 
-            {/* E-Mail & Telefonnummer */}
-            <Grid container spacing={2}>
-                <Grid size={{xs: 12, sm: 6}}>
-                    <TextField
-                        label="E-Mail-Adresse"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        fullWidth
-                        required
-                        error={!!errors.email}
-                        helperText={errors.email}
-                        slotProps={{
-                            input: {
-                                startAdornment: <InputAdornment position="start"><MailOutlinedIcon /></InputAdornment>,
-                            },
-                        }}
-                    />
-                </Grid>
-                <Grid size={{xs: 12, sm: 6}}>
-                    <TextField
-                        label="Telefonnummer (optional)"
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        error={!!errors.phoneNumber}
-                        helperText={errors.phoneNumber}
-                        fullWidth
-                        slotProps={{
-                            input: {
-                                startAdornment: <InputAdornment position="start"><PhoneInTalkOutlinedIcon /></InputAdornment>,
-                            },
-                        }}
-                    />
-                </Grid>
-            </Grid>
+                {/* Nachricht */}
+                <TextField
+                    label="Nachricht"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    required
+                    error={!!errors.message}
+                    helperText={errors.message}
+                    fullWidth
+                    sx={{
+                        '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--dark-green)',
+                        },
+                        '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'var(--sage-green)',
+                        },
+                        '& label.Mui-focused': {
+                            color: 'var(--sage-green)',
+                        },
+                    }}
+                    multiline
+                    rows={10}
+                    slotProps={{
+                        input: {
+                            startAdornment: <InputAdornment position="start"><ChatOutlinedIcon/></InputAdornment>,
+                        },
+                    }}
+                />
 
-            {/* Nachricht */}
-            <TextField
-                label="Nachricht"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                required
-                error={!!errors.message}
-                helperText={errors.message}
-                fullWidth
-                multiline
-                rows={8}
-                slotProps={{
-                    input: {
-                        startAdornment: <InputAdornment position="start"><ChatOutlinedIcon /></InputAdornment>,
-                    },
-                }}
-            />
+                {/* DSGVO */}
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            checked={agreement}
+                            onChange={(e) => setAgreement(e.target.checked)}
+                            sx={{
+                                color: 'var(--sage-green)',
+                                '&.Mui-checked': {
+                                    color: 'var(--sage-green)',
+                                },
+                            }}
+                        />
+                    }
+                    label="Ich habe die DSGVO-Erklärung gelesen und bin mit der Speicherung und Verarbeitung meiner Daten einverstanden."
+                />
 
-            {/* DSGVO */}
-            <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={agreement}
-                        onChange={(e) => setAgreement(e.target.checked)}
-                    />
-                }
-                label="Ich habe die DSGVO-Erklärung gelesen und bin mit der Speicherung und Verarbeitung meiner Daten einverstanden."
-            />
-
-            {/* Button */}
-            <button disabled={!agreement||sending} type="submit">{sending ? "Wird gesendet…" : "Absenden"}</button>
-        </Stack>
+                {/* Button */}
+                <button disabled={!agreement || sending} type="submit"
+                        className={"contactForm"}>{sending ? "Wird gesendet…" : "Absenden"}</button>
+            </Stack>
+        </Box>
     );
 }
