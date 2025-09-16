@@ -1,4 +1,6 @@
 import {Box, Grid} from "@mui/material";
+import InstagramPromotion from "../components/InstagramPromotion.tsx";
+import DesignBar from "../components/DesignBar";
 
 export default function AboutUsPage() {
     return (
@@ -20,6 +22,8 @@ export default function AboutUsPage() {
                         gebaut und betrieben.</p>
                 </Grid>
             </Grid>
+            <DesignBar/>
+            <InstagramPromotion/>
         </div>
     )
 }
