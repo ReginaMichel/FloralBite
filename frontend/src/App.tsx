@@ -20,7 +20,6 @@ import HomePage from "./pages/HomePage.tsx";
 import {useMediaQuery} from '@mui/material';
 import MobileFooter from "./components/MobileFooter.tsx";
 import MobileHeader from "./components/MobileHeader.tsx";
-import LoadingSpinner from "./components/LoadingSpinner.tsx";
 
 function App() {
 
