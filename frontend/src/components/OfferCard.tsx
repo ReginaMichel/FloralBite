@@ -21,7 +21,7 @@ export default function OfferCard(props: Readonly<OfferCardProps>) {
     } else if (props.type === "party") {
         title = "Festbedarf";
     }
-    const imageUrl = "/assets/julia_001.webp"
+    const imageUrl = "/assets/" + props.type + ".webp";
 
     /* Aufbau in eine äußere und eine innere Box, damit ein 3D-Effekt möglich ist.
     * perspective: "2000px" bedeutet, dass die "Kamera" für den 3D-Effekt 2000px vom Geschehen entfernt wirkt. Dadurch
