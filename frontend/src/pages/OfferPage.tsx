@@ -16,7 +16,7 @@ export default function OfferPage() {
                 : <>
                     <OfferDetail type={selected}/>
                     <DesignBar/>
-                    <h3>Weitere Angebote</h3>
+                    <h2>Weitere Angebote</h2>
                 </>}
             <Grid container spacing={3} sx={{py: 0.5}}>
                 {offerCategories
