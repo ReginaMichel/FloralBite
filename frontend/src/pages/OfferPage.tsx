@@ -3,8 +3,7 @@ import OfferDetail from "../components/OfferDetail.tsx";
 import {Grid} from "@mui/material";
 import {useState} from "react";
 import DesignBar from "../components/DesignBar.tsx";
-import type {OfferCategory} from "../models/OfferCategory.ts"
-import {offerCategories} from "../models/OfferCategory.ts";
+import {offerCategories, type OfferCategory} from "../models/OfferCategory.ts";
 
 export default function OfferPage() {
 
