@@ -72,6 +72,7 @@ function App() {
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/angebot" element={<OfferPage />} />
+                    <Route path="/preise" element={<PlaceholderPage />} />
                     <Route path="/ueber-uns" element={<AboutUsPage />} />
                     <Route path="/galerie" element={<GalleryPage />} />
                     <Route path="/kontakt" element={<ContactPage />} />
