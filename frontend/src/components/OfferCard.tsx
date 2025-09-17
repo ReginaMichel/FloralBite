@@ -1,4 +1,4 @@
-import type {OfferCategory} from "../models/OfferCategory.ts";
+import {type OfferCategory, offerCategoryTitles} from "../models/OfferCategory.ts";
 import {Box} from "@mui/material";
 import {useIsTouchDevice} from "../utils/useIsTouchDevice.ts";
 import {useState} from "react";
@@ -9,20 +9,7 @@ type OfferCardProps = {
 
 export default function OfferCard(props: Readonly<OfferCardProps>) {
 
-    let title = "";
-    if (props.type === "cold") {
-        title = "Kalte Auswahl";
-    } else if (props.type === "menu") {
-        title = "Festliche Menüs";
-    } else if (props.type === "sweet") {
-        title = "Süße Auswahl";
-    } else if (props.type === "savory") {
-        title = "Süß und salzig";
-    } else if (props.type === "special") {
-        title = "Specials";
-    } else if (props.type === "party") {
-        title = "Festbedarf";
-    }
+    const title = offerCategoryTitles[props.type];
     const imageUrl = "/assets/" + props.type + ".webp";
 
     // Abfrage, ob das Gerät ein Touch- oder Mausgerät ist:

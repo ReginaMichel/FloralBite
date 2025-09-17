@@ -10,3 +10,13 @@ export const offerCategories: OfferCategory[] = [
     "special",
     "party",
 ];
+
+// Um Dopplungen in OfferPage und OfferDetail zu vermeiden
+export const offerCategoryTitles: Record<OfferCategory, string> = {
+    cold: "Kalte Auswahl",
+    menu: "Festliche Menüs",
+    sweet: "Süße Auswahl",
+    savory: "Süß und salzig",
+    special: "Specials",
+    party: "Festbedarf",
+};

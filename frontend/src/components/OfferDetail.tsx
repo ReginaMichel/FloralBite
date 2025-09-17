@@ -1,4 +1,4 @@
-import type {OfferCategory} from "../models/OfferCategory.ts";
+import {type OfferCategory, offerCategoryTitles} from "../models/OfferCategory.ts";
 import {Box} from "@mui/material";
 
 type OfferDetailProps = {
@@ -7,20 +7,7 @@ type OfferDetailProps = {
 
 export default function OfferDetail(props: Readonly<OfferDetailProps>) {
 
-    let title = "";
-    if (props.type === "cold") {
-        title = "Kalte Auswahl";
-    } else if (props.type === "menu") {
-        title = "Festliche Menüs";
-    } else if (props.type === "sweet") {
-        title = "Süße Auswahl";
-    } else if (props.type === "savory") {
-        title = "Süß und salzig";
-    } else if (props.type === "special") {
-        title = "Specials";
-    } else if (props.type === "party") {
-        title = "Festbedarf";
-    }
+    const title = offerCategoryTitles[props.type];
 
     return (
         <Box
