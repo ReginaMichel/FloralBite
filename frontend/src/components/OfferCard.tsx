@@ -1,44 +1,37 @@
-import type {OfferCategory} from "../models/OfferCategory.ts";
+import {type OfferCategory, offerCategoryTitles} from "../models/OfferCategory.ts";
 import {Box} from "@mui/material";
 import {useIsTouchDevice} from "../utils/useIsTouchDevice.ts";
 import {useState} from "react";
 
 type OfferCardProps = {
     type: OfferCategory;
+    select: (type: OfferCategory) => void;
 }
 
 export default function OfferCard(props: Readonly<OfferCardProps>) {
 
-    let title = "";
-    if (props.type === "cold") {
-        title = "Kalte Auswahl";
-    } else if (props.type === "menu") {
-        title = "Festliche Menüs";
-    } else if (props.type === "sweet") {
-        title = "Süße Auswahl";
-    } else if (props.type === "savory") {
-        title = "Süß und salzig";
-    } else if (props.type === "special") {
-        title = "Specials";
-    } else if (props.type === "party") {
-        title = "Festbedarf";
-    }
+    const title = offerCategoryTitles[props.type];
     const imageUrl = "/assets/" + props.type + ".webp";
 
     // Abfrage, ob das Gerät ein Touch- oder Mausgerät ist:
     const isTouchDevice = useIsTouchDevice();
     // Zustand der Karte:
     const [flipped, setFlipped] = useState(false);
-    // Bei Touch-Geräten, soll ein Click die Karte umdrehen:
+
     const handleClick = () => {
+        // Bei Touch-Geräten, soll ein Klick die Karte umdrehen:
         if (isTouchDevice) {
             setFlipped((prev) => !prev);
+        // Bei Maus-Geräten, soll ein Klick die Detailansicht öffnen:
+        } else {
+            props.select(props.type);
         }
     };
 
     return (
         <Box
-            // Bei Touch-Geräten ist klicken möglich:
+            // Bei Touch-Geräten ist klicken möglich, um die Karte zu drehen und das Bild anzuzeigen,
+            // bei Maus-Geräten ist klicken möglichen, um die Detailansicht zu öffnen.
             onClick={handleClick}
             sx={{
                 position: "relative",

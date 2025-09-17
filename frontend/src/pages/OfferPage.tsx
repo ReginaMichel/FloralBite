@@ -1,17 +1,27 @@
 import OfferCard from "../components/OfferCard.tsx";
+import OfferDetail from "../components/OfferDetail.tsx";
 import {Grid} from "@mui/material";
+import {useState} from "react";
+import DesignBar from "../components/DesignBar.tsx";
+import {offerCategories, type OfferCategory} from "../models/OfferCategory.ts";
 
 export default function OfferPage() {
+
+    const [selected, setSelected] = useState<OfferCategory | undefined>(undefined);
+
     return (
         <>
-            <h2>Das Angebot von FloralBite</h2>
+            {selected === undefined ? <h2>Das Angebot von FloralBite</h2>
+                : <>
+                    <OfferDetail type={selected}/>
+                    <DesignBar/>
+                    <h2>Weitere Angebote</h2>
+                </>}
             <Grid container spacing={3} sx={{py: 0.5}}>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"cold"}/></Grid>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"menu"}/></Grid>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"sweet"}/></Grid>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"savory"}/></Grid>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"special"}/></Grid>
-                <Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={"party"}/></Grid>
+                {offerCategories
+                    .filter((cat) => cat!== selected)
+                    .map((cat) =>
+                    (<Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={cat} select={setSelected}/></Grid>))}
             </Grid>
         </>
     )

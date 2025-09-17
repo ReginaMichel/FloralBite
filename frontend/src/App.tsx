@@ -14,6 +14,7 @@ import PlaceholderPage from "./pages/PlaceholderPage.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import Header from './components/Header.tsx';
 import OfferPage from "./pages/OfferPage.tsx";
+import PricesPage from "./pages/PricesPage.tsx";
 import AboutUsPage from "./pages/AboutUsPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import HomePage from "./pages/HomePage.tsx";
@@ -72,6 +73,7 @@ function App() {
                 <Route element={<ProtectedRoute user={user} />}>
                     <Route path="/home" element={<HomePage />} />
                     <Route path="/angebot" element={<OfferPage />} />
+                    <Route path="/preise" element={<PricesPage />} />
                     <Route path="/ueber-uns" element={<AboutUsPage />} />
                     <Route path="/galerie" element={<GalleryPage />} />
                     <Route path="/kontakt" element={<ContactPage />} />
