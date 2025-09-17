@@ -1,4 +1,5 @@
 import {type OfferCategory, offerCategoryTitles, offerCategoryDescriptions} from "../models/OfferCategory.ts";
+import Gallery from "./Gallery.tsx";
 
 type OfferDetailProps = {
     type: OfferCategory;
@@ -13,6 +14,8 @@ export default function OfferDetail(props: Readonly<OfferDetailProps>) {
         <>
             <h2>{title}</h2>
             <p>{description}</p>
+            <h3>Beispiele</h3>
+            <Gallery type={props.type} title={""}/>
         </>
     )
 }
