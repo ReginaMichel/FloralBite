@@ -10,7 +10,6 @@ export default function OfferPage() {
 
     const [selected, setSelected] = useState<OfferCategory | undefined>(undefined);
 
-
     return (
         <>
             {selected === undefined ? <h2>Das Angebot von FloralBite</h2>
@@ -23,7 +22,7 @@ export default function OfferPage() {
                 {offerCategories
                     .filter((cat) => cat!== selected)
                     .map((cat) =>
-                    (<Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={cat}/></Grid>))}
+                    (<Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={cat} select={setSelected}/></Grid>))}
             </Grid>
         </>
     )
