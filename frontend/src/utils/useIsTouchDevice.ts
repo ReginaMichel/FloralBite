@@ -8,6 +8,7 @@ export function useIsTouchDevice() {
     useEffect(() => {
         const checkTouch = () => {
             // MediaQuery, ob das Gerät über Maus-Hover verfügt oder nicht
+            // window.matchMedia ist eine Abfrage an die Browser-API
             setIsTouchDevice(window.matchMedia('(hover: none)').matches);
         };
         // Beim Start
