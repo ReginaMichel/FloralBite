@@ -23,7 +23,7 @@ export default function OfferDetail(props: Readonly<OfferDetailProps>) {
             für ein individuelles Angebot nach deinen Wünschen. Ich freue mich, von dir zu hören.</p>
             {/* Button-Komponente vom Typ Link ist besser für die Barrierefreiheit als Buttons und Links zu
             verschachteln. */}
-            <Stack spacing={2} direction="row">
+            <Stack spacing={3} direction="row" sx={{py: 1.5}}>
                 <button className={"contactForm"}>
                     <Link to={"/preise"}>Angebotsübersicht</Link>
                 </button>
