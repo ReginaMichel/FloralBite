@@ -224,6 +224,13 @@ button.scrollButton {
     display: none;
   }
 }
+@media (max-width: 600px) {
+  button.scrollButton {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.8rem;
+  }
+}
 button.scrollButton:hover {
   border-color: rgb(var(--link-color));
 }
