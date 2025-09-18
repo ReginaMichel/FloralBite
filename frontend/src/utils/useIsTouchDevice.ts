@@ -13,11 +13,11 @@ export function useIsTouchDevice() {
             // TouchPoints: 0 kein Touchgerät, 1 einfaches Touchgerät, 5 oder 10 Multitouch wie Smartphone oder Tablet
             // window.matchMedia('(hover: none)').matches ist eine MediaQuery an die Browser-API über Hover-Fähigkeit
             // pointer gibt coarse bei smartphones und tablets an, allerdings auch bei manchen Hybridgeräten
-            // innerWidth < xxx ist dabei, weil Chrome auf Android gerne falsche Dinge meldet
+            // innerWidth < xxx ist optional dabei, weil Chrome auf Android gerne falsche Dinge meldet
             // innerWidth < 850 oder 600 je nachdem wie man Smartphones im Querformat werten möchte.
             const hasTouchSupport =
                 ('ontouchstart' in window || navigator.maxTouchPoints > 0) &&
-                (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 600 || window.matchMedia('(hover: none)').matches);
+                (window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(hover: none)').matches);
             setIsTouchDevice(hasTouchSupport);
         };
         // Beim Start
