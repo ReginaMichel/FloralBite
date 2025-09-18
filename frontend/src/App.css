@@ -219,6 +219,11 @@ button.scrollButton {
   top: 50%; /* setzt die Oberkante der Buttons auf 50% Höhe */
   transform: translateY(-50%); /* sorgt dafür, dass das Zentrum der Buttons auf der Angabe bei top liegt */
 }
+@media (hover: none), (pointer: coarse) {
+  button.scrollButton {
+    display: none;
+  }
+}
 button.scrollButton:hover {
   border-color: rgb(var(--link-color));
 }

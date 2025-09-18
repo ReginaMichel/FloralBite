@@ -3,8 +3,6 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {loadImages} from "../utils/loadImages.ts";
 import type {ImageCategory} from "../utils/loadImages.ts";
 import {useEffect, useRef, useState} from "react";
-// TouchDevices haben eine Swipe-Funktion statt den Buttons:
-import {useIsTouchDevice} from "../utils/useIsTouchDevice.ts";
 
 type GalleryProps = {
     type: ImageCategory;
@@ -123,26 +121,18 @@ export default function Gallery(props:Readonly<GalleryProps>) {
         };
     }, []);
 
-    // Abfrage, ob das Gerät ein Touch- oder Mausgerät ist:
-    const isTouchDevice = useIsTouchDevice();
-
     // Das onLoad bei den Bildern ist wichtig, da es beim Neuladen der Seite passieren kann, dass beide Buttons auf
     // disabled gesetzt werden, weil die Bilder zu lange brauchen und die Galerie bei der Prüfung noch "leer" ist.
     return (
         <div className="galleryComponent">
             <h2 className="galleryTitle">{props.title}</h2>
             <div className="galleryContainer">
-                {/* Rendern der Buttons nur bei Geräten ohne Touch-Display */}
-                {!isTouchDevice && (
-                    <button className={"scrollButton left"} onClick={scrollLeft} disabled={buttonLeftDisabled}>
-                        <FaChevronLeft/>
-                    </button>
-                )}
-                {!isTouchDevice && (
-                    <button className={"scrollButton right"} onClick={scrollRight} disabled={buttonRightDisabled}>
-                        <FaChevronRight/>
-                    </button>
-                )}
+                <button className={"scrollButton left"} onClick={scrollLeft} disabled={buttonLeftDisabled}>
+                    <FaChevronLeft/>
+                </button>
+                <button className={"scrollButton right"} onClick={scrollRight} disabled={buttonRightDisabled}>
+                    <FaChevronRight/>
+                </button>
                 <div className="galleryContent" ref={scrollRef}>
                     {images.map(image => (
                         <img src={image} alt={"Ein Bild einer Speise."} className="galleryImages"
