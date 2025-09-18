@@ -6,10 +6,19 @@ export function useIsTouchDevice() {
     const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
+        // window ist eine Abfrage an die Browser-API
         const checkTouch = () => {
-            // MediaQuery, ob das Gerät über Maus-Hover verfügt oder nicht
-            // window.matchMedia ist eine Abfrage an die Browser-API
-            setIsTouchDevice(window.matchMedia('(hover: none)').matches);
+            // mehrfacher Check um auf Nummer sicher zu gehen, dass sinnvolle Ergebnisse zurückkommen.
+            // 'ontouchstart': check für Touchfähigkeit
+            // TouchPoints: 0 kein Touchgerät, 1 einfaches Touchgerät, 5 oder 10 Multitouch wie Smartphone oder Tablet
+            // window.matchMedia('(hover: none)').matches ist eine MediaQuery an die Browser-API über Hover-Fähigkeit
+            // pointer gibt coarse bei smartphones und tablets an, allerdings auch bei manchen Hybridgeräten
+            // innerWidth < xxx ist dabei, weil Chrome auf Android gerne falsche Dinge meldet
+            // innerWidth < 850 oder 600 je nachdem wie man Smartphones im Querformat werten möchte.
+            const hasTouchSupport =
+                ('ontouchstart' in window || navigator.maxTouchPoints > 0) &&
+                (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 600 || window.matchMedia('(hover: none)').matches);
+            setIsTouchDevice(hasTouchSupport);
         };
         // Beim Start
         checkTouch();
