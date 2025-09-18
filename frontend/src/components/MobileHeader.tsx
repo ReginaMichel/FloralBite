@@ -12,7 +12,7 @@ export default function MobileHeader() {
     }
 
     return (
-        <AppBar position="sticky" sx={{ backgroundColor: 'white', top: 0 }}>
+        <AppBar position="fixed" sx={{ backgroundColor: 'white', top: 0 }}>
             <Toolbar sx={{ position: 'relative', minHeight: '3rem'}}>
                 <IconButton
                     edge="start"
