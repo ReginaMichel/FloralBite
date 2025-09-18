@@ -35,7 +35,8 @@ export default function MobileHeader() {
             </Toolbar>
             {menuOpen ?
                 <Stack sx={{ width: '100%', color: 'var(--dark-green)', '& a': {color: 'var(--dark-green) !important'},
-                    padding: '1rem', borderTop: '1px solid var(--light-sage-green)'}}>
+                    padding: '1rem', borderTop: '1px solid var(--light-sage-green)'}} onClick={
+                    () => setMenuOpen(false)}>
                     <Link to={"/home"}>Home</Link>
                     <Link to={"/angebot"}>Angebot</Link>
                     <Link to={"/ueber-uns"}>Über uns</Link>
