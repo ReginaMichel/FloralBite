@@ -1,7 +1,7 @@
 import {type OfferCategory, offerCategoryTitles} from "../models/OfferCategory.ts";
 import {Box} from "@mui/material";
 import {useIsTouchDevice} from "../utils/useIsTouchDevice.ts";
-import {useState} from "react";
+import {useState, type MouseEvent} from "react";
 
 type OfferCardProps = {
     type: OfferCategory;
@@ -27,6 +27,12 @@ export default function OfferCard(props: Readonly<OfferCardProps>) {
             props.select(props.type);
         }
     };
+    const handleMobileClick = (event: MouseEvent) => {
+        // Verhindert, das zu dem handleMobileClick der inneren Box zusätzlich noch das handleClick der äußeren Box
+        // aufgerufen wird.
+        event.stopPropagation();
+        props.select(props.type);
+    }
 
     return (
         <Box
@@ -77,6 +83,7 @@ export default function OfferCard(props: Readonly<OfferCardProps>) {
                     position: "absolute",
                     width: "100%",
                     height: "100%",
+                    backgroundColor: "var(--light-sage-green)",
                     transition: "opacity 0.4s ease-in-out",
                     // Opacity und z-Position kann auch durch Anklicken auf einem Smartphone geändert werden
                     opacity: flipped ? 1 : 0,
@@ -88,12 +95,15 @@ export default function OfferCard(props: Readonly<OfferCardProps>) {
                     alt={`Eine Speise der Kategorie ${title}`}
                     style={{
                         width: "100%",
-                        height: "100%",
+                        height: isTouchDevice ? "77%" : "100%",
                         objectFit: "cover",
-                        borderRadius: "0.4rem",
                         display: "block",
                     }}
                 />
+                {isTouchDevice ? <Box sx={{display: "flex", justifyContent: "center", height: "23%", alignItems: "center"}}
+                    onClick={handleMobileClick}>
+                    <p style={{margin: 0, fontWeight: 600}}>Mehr Infos?</p>
+                </Box> : null}
             </Box>
         </Box>
     )
