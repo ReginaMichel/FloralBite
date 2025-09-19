@@ -27,7 +27,7 @@ public class OfferService {
     }
     public MenuOffer addMenuOffer(MenuOfferDTO offerDTO) {
         String id = idService.newId();
-        MenuOffer offer = new MenuOffer(id, offerDTO.name(), offerDTO.category(), offerDTO.content(), offerDTO.price());
+        MenuOffer offer = new MenuOffer(id, offerDTO.name(), offerDTO.starters(), offerDTO.mainDishes(), offerDTO.desserts(), offerDTO.price());
         return menuOfferRepo.save(offer);
     }
     public SweetOffer addSweetOffer(SweetOfferDTO offerDTO) {
