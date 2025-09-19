@@ -1,4 +1,4 @@
-package de.floralbite.backend.offers;
+package de.floralbite.backend.offers.models;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
