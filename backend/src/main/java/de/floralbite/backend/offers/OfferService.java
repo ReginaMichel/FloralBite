@@ -8,20 +8,20 @@ import java.util.List;
 @Service
 public class OfferService {
 
-    private final SingleOfferRepo singleOfferRepo;
+    private final ColdOfferRepo coldOfferRepo;
     private final MenuOfferRepo menuOfferRepo;
     private final IdService idService;
 
-    public OfferService(SingleOfferRepo singleOfferRepo, MenuOfferRepo menuOfferRepo, IdService idService) {
-        this.singleOfferRepo = singleOfferRepo;
+    public OfferService(ColdOfferRepo coldOfferRepo, MenuOfferRepo menuOfferRepo, IdService idService) {
+        this.coldOfferRepo = coldOfferRepo;
         this.menuOfferRepo = menuOfferRepo;
         this.idService = idService;
     }
 
-    public SingleOffer addSingleOffer(SingleOfferDTO offerDTO) {
+    public ColdOffer addColdOffer(ColdOfferDTO offerDTO) {
         String id = idService.newId();
-        SingleOffer offer = new SingleOffer(id, offerDTO.name(), offerDTO.category(), offerDTO.description());
-        return singleOfferRepo.save(offer);
+        ColdOffer offer = new ColdOffer(id, offerDTO.name(), offerDTO.category(), offerDTO.description());
+        return coldOfferRepo.save(offer);
     }
     public MenuOffer addMenuOffer(MenuOfferDTO offerDTO) {
         String id = idService.newId();
@@ -29,8 +29,8 @@ public class OfferService {
         return menuOfferRepo.save(offer);
     }
 
-    public List<SingleOffer> getAllSingleOffers() {
-        return singleOfferRepo.findAll();
+    public List<ColdOffer> getAllColdOffers() {
+        return coldOfferRepo.findAll();
     }
     public List<MenuOffer> getAllMenuOffers() {
         return menuOfferRepo.findAll();

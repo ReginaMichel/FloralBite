@@ -16,9 +16,9 @@ public class OfferController {
         this.offerService = offerService;
     }
 
-    @PostMapping("/single")
-    public ResponseEntity<SingleOffer> addSingleOffer (@RequestBody SingleOfferDTO singleOfferDto) {
-        SingleOffer savedOffer = offerService.addSingleOffer(singleOfferDto);
+    @PostMapping("/cold")
+    public ResponseEntity<ColdOffer> addColdOffer (@RequestBody ColdOfferDTO coldOfferDto) {
+        ColdOffer savedOffer = offerService.addColdOffer(coldOfferDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
     }
     @PostMapping("/menu")
@@ -27,9 +27,9 @@ public class OfferController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
     }
 
-    @GetMapping("/single")
-    public ResponseEntity<List<SingleOffer>> getAllSingleOffers() {
-        List<SingleOffer> allOffers = offerService.getAllSingleOffers();
+    @GetMapping("/cold")
+    public ResponseEntity<List<ColdOffer>> getAllColdOffers() {
+        List<ColdOffer> allOffers = offerService.getAllColdOffers();
         if (allOffers.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
