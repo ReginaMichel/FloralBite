@@ -1,5 +1,6 @@
 package de.floralbite.backend.offers;
 
+import de.floralbite.backend.offers.models.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,11 @@ public class OfferController {
         SweetOffer savedOffer = offerService.addSweetOffer(sweetOfferDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
     }
+    @PostMapping("/savory")
+    public ResponseEntity<SavoryOffer> addSavoryOffer (@RequestBody SavoryOfferDTO savoryOfferDto) {
+        SavoryOffer savedOffer = offerService.addSavoryOffer(savoryOfferDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
+    }
 
     @GetMapping("/cold")
     public ResponseEntity<List<ColdOffer>> getAllColdOffers() {
@@ -51,6 +57,14 @@ public class OfferController {
     @GetMapping("/sweet")
     public ResponseEntity<List<SweetOffer>> getAllSweetOffers() {
         List<SweetOffer> allOffers = offerService.getAllSweetOffers();
+        if (allOffers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(allOffers);
+    }
+    @GetMapping("/savory")
+    public ResponseEntity<List<SavoryOffer>> getAllSavoryOffers() {
+        List<SavoryOffer> allOffers = offerService.getAllSavoryOffers();
         if (allOffers.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
