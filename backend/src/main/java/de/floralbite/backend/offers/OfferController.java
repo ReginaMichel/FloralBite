@@ -26,6 +26,11 @@ public class OfferController {
         MenuOffer savedOffer = offerService.addMenuOffer(menuOfferDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
     }
+    @PostMapping("/sweet")
+    public ResponseEntity<SweetOffer> addSweetOffer (@RequestBody SweetOfferDTO sweetOfferDto) {
+        SweetOffer savedOffer = offerService.addSweetOffer(sweetOfferDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedOffer);
+    }
 
     @GetMapping("/cold")
     public ResponseEntity<List<ColdOffer>> getAllColdOffers() {
@@ -38,6 +43,14 @@ public class OfferController {
     @GetMapping("/menu")
     public ResponseEntity<List<MenuOffer>> getAllMenuOffers() {
         List<MenuOffer> allOffers = offerService.getAllMenuOffers();
+        if (allOffers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(allOffers);
+    }
+    @GetMapping("/sweet")
+    public ResponseEntity<List<SweetOffer>> getAllSweetOffers() {
+        List<SweetOffer> allOffers = offerService.getAllSweetOffers();
         if (allOffers.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
