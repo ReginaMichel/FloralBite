@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -144,18 +146,67 @@ class OfferServiceTest {
     }
 
     @Test
-    void getAllColdOffers() {
+    void getAllColdOffers_returnsAllColdOffers() {
+        // GIVEN
+        List<ColdOffer> response = List.of(coldOffer1, coldOffer2);
+        when(coldOfferRepo.findAll()).thenReturn(response);
+        // WHEN
+        List<ColdOffer> result = offerService.getAllColdOffers();
+        // THEN
+        assertEquals(response, result);
+        verify(coldOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(coldOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
     }
-
     @Test
-    void getAllMenuOffers() {
+    void getAllMenuOffers_returnsAllMenuOffers() {
+        // GIVEN
+        List<MenuOffer> response = List.of(menuOffer);
+        when(menuOfferRepo.findAll()).thenReturn(response);
+        // WHEN
+        List<MenuOffer> result = offerService.getAllMenuOffers();
+        // THEN
+        assertEquals(response, result);
+        verify(menuOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(menuOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
     }
-
     @Test
-    void getAllSavoryOffers() {
+    void getAllSavoryOffers_returnsAllSavoryOffers() {
+        // GIVEN
+        List<SavoryOffer> response = List.of(savoryOffer);
+        when(savoryOfferRepo.findAll()).thenReturn(response);
+        // WHEN
+        List<SavoryOffer> result = offerService.getAllSavoryOffers();
+        // THEN
+        assertEquals(response, result);
+        verify(savoryOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(savoryOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
     }
-
     @Test
-    void getAllSweetOffers() {
+    void getAllSweetOffers_returnsAllSweetOffers() {
+        // GIVEN
+        List<SweetOffer> response = List.of(sweetOffer1, sweetOffer2, sweetOffer3);
+        when(sweetOfferRepo.findAll()).thenReturn(response);
+        // WHEN
+        List<SweetOffer> result = offerService.getAllSweetOffers();
+        // THEN
+        assertEquals(response, result);
+        verify(sweetOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(sweetOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
     }
 }
