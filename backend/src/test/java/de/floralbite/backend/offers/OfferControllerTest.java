@@ -8,12 +8,11 @@ import de.floralbite.backend.offers.repos.SweetOfferRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -44,7 +43,6 @@ class OfferControllerTest {
     void setUp() {
         ColdOffer coldOffer1 = new ColdOffer("1","Kalte Speise 1", ColdOfferCategory.FINGERFOOD, "Eine kalte Speise");
         ColdOffer coldOffer2 = new ColdOffer("2", "Kalte Speise 2", ColdOfferCategory.SALAD, "Eine weitere kalte Speise");
-        ColdOfferDTO coldOfferDTO = new ColdOfferDTO("Kalte Speise 1", ColdOfferCategory.FINGERFOOD, "Eine kalte Speise");
         coldOfferRepo.save(coldOffer1);
         coldOfferRepo.save(coldOffer2);
 
@@ -59,7 +57,6 @@ class OfferControllerTest {
         desserts.add("Kuchenschnitte");
         desserts.add("Sahnetorte");
         MenuOffer menuOffer = new MenuOffer("1", "Festliches Menü", starters, mainDishes, desserts, "Preis");
-        MenuOfferDTO menuOfferDTO = new MenuOfferDTO("Festliches Menü", starters, mainDishes, desserts, "Preis");
         menuOfferRepo.save(menuOffer);
 
         ArrayList<String> savoryDishes = new ArrayList<>();
@@ -69,29 +66,173 @@ class OfferControllerTest {
         sweetDishes.add("Süßspeise 1");
         sweetDishes.add("Süßspeise 2");
         SavoryOffer savoryOffer = new SavoryOffer("1", "Salzig und süße Kombination", savoryDishes, sweetDishes, "Preis");
-        SavoryOfferDTO savoryOfferDTO = new SavoryOfferDTO("Salzig und süße Kombination", savoryDishes, sweetDishes, "Preis");
         savoryOfferRepo.save(savoryOffer);
 
         SweetOffer sweetOffer1 = new SweetOffer("1", "Süße Creme", SweetOfferCategory.DESSERT, "Eine Süßspeise");
         SweetOffer sweetOffer2 = new SweetOffer("2", "Kuchenschnitte", SweetOfferCategory.CAKE, "Eine weitere Süßspeise");
         SweetOffer sweetOffer3 = new SweetOffer("3", "Sahnetorte", SweetOfferCategory.CREAMCAKE, "Eine Sahnetorte");
-        SweetOfferDTO sweetOfferDTO = new SweetOfferDTO("Süße Creme", SweetOfferCategory.DESSERT, "Eine Süßspeise");
         sweetOfferRepo.save(sweetOffer1);
         sweetOfferRepo.save(sweetOffer2);
         sweetOfferRepo.save(sweetOffer3);
     }
 
     @Test
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     void addColdOffer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/offers/cold")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                  {
+                      "name": "Kalte Platte",
+                      "category": "FINGERFOOD",
+                      "description": "Ein kaltes Gericht"
+                  }
+                """
+                        ))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().json(
+                        """
+                                          {
+                                              "name": "Kalte Platte",
+                                              "category": "FINGERFOOD",
+                                              "description": "Ein kaltes Gericht"
+                                          }
+                        """
+                ))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id")
+                        .isNotEmpty());
     }
     @Test
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     void addMenuOffer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/offers/menu")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                  {
+                      "name": "Spätsommerabend am Mittelmeer",
+                      "starters": [
+                          "Mediterrane Gemüseplatte",
+                          "Avocado-Caprese",
+                          "Bruschetta Variationen",
+                          "Sommersalat mit einer Himbeer-Vinaigrette"
+                      ],
+                      "mainDishes": [
+                          "Auberginen-Linsen-Lasagne",
+                          "Zitronenrisotto mit gebratenem grünen Spargel und Cashew-Parmesan",
+                          "Weiße Bohnen Ratatouille-Pot"
+                      ],
+                      "desserts": [
+                          "Erdbeer-Mascarvone-Cups",
+                          "Feine Zitronencreme auf einer mediterranen Obstplatte",
+                          "Heidelbeer Tiramisu"
+                      ],
+                      "price": "43€ p.P. ab 50 P."
+                  }
+                """
+                        ))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().json(
+                        """
+                                          {
+                                              "name": "Spätsommerabend am Mittelmeer",
+                                              "starters": [
+                                                  "Mediterrane Gemüseplatte",
+                                                  "Avocado-Caprese",
+                                                  "Bruschetta Variationen",
+                                                  "Sommersalat mit einer Himbeer-Vinaigrette"
+                                              ],
+                                              "mainDishes": [
+                                                  "Auberginen-Linsen-Lasagne",
+                                                  "Zitronenrisotto mit gebratenem grünen Spargel und Cashew-Parmesan",
+                                                  "Weiße Bohnen Ratatouille-Pot"
+                                              ],
+                                              "desserts": [
+                                                  "Erdbeer-Mascarvone-Cups",
+                                                  "Feine Zitronencreme auf einer mediterranen Obstplatte",
+                                                  "Heidelbeer Tiramisu"
+                                              ],
+                                              "price": "43€ p.P. ab 50 P."
+                                          }
+                        """
+                ))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id")
+                        .isNotEmpty());
     }
     @Test
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     void addSavoryOffer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/offers/savory")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                  {
+                      "name": "Klassiker neu interpretiert",
+                      "savoryDishes": [
+                          "Avocado-Caprese",
+                          "Miniburger BBQ-Zwiebel mit Pommes",
+                          "Nudelsalat Tomate-Olive-Rucola",
+                          "Bruschetta Variationen",
+                          "Sommersalat mit einer Himbeer-Vinaigrette"
+                      ],
+                      "sweetDishes": [
+                          "Schwarzwälderkirsch-Cups",
+                          "Zucker-Mandel-Schnitten",
+                          "Erdbeer-Mascarvone-Cups",
+                          "Exotische Obstplatte"
+                      ],
+                      "price": ""
+                  }
+                """
+                        ))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().json(
+                        """
+                                          {
+                                               "name": "Klassiker neu interpretiert",
+                                               "savoryDishes": [
+                                                   "Avocado-Caprese",
+                                                   "Miniburger BBQ-Zwiebel mit Pommes",
+                                                   "Nudelsalat Tomate-Olive-Rucola",
+                                                   "Bruschetta Variationen",
+                                                   "Sommersalat mit einer Himbeer-Vinaigrette"
+                                               ],
+                                               "sweetDishes": [
+                                                   "Schwarzwälderkirsch-Cups",
+                                                   "Zucker-Mandel-Schnitten",
+                                                   "Erdbeer-Mascarvone-Cups",
+                                                   "Exotische Obstplatte"
+                                               ],
+                                               "price": ""
+                                           }
+                        """
+                ))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id")
+                        .isNotEmpty());
     }
     @Test
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     void addSweetOffer() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/offers/sweet")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                  {
+                      "name":  "Schwarzwälderkirsch-Cups",
+                      "category": "DESSERT",
+                      "description":  "Schwarzwälderkirsch-Cups"
+                  }
+                """
+                        ))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.content().json(
+                        """
+                                          {
+                                              "name":  "Schwarzwälderkirsch-Cups",
+                                              "category": "DESSERT",
+                                              "description":  "Schwarzwälderkirsch-Cups"
+                                          }
+                        """
+                ))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id")
+                        .isNotEmpty());
     }
 
     @Test
