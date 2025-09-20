@@ -209,4 +209,65 @@ class OfferServiceTest {
         verifyNoInteractions(menuOfferRepo);
         verifyNoInteractions(savoryOfferRepo);
     }
+
+    @Test
+    void getAllColdOffers_returnsEmptyList() {
+        // GIVEN
+        when(coldOfferRepo.findAll()).thenReturn(List.of());
+        // WHEN
+        List<ColdOffer> result = offerService.getAllColdOffers();
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(coldOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(coldOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
+    }
+    @Test
+    void getAllMenuOffers_returnsEmptyList() {
+        // GIVEN
+        when(menuOfferRepo.findAll()).thenReturn(List.of());
+        // WHEN
+        List<MenuOffer> result = offerService.getAllMenuOffers();
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(menuOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(menuOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
+    }
+    @Test
+    void getAllSavoryOffers_returnsEmptyList() {
+        // GIVEN
+        when(savoryOfferRepo.findAll()).thenReturn(List.of());
+        // WHEN
+        List<SavoryOffer> result = offerService.getAllSavoryOffers();
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(savoryOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(savoryOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(sweetOfferRepo);
+    }
+    @Test
+    void getAllSweetOffers_returnsEmptyList() {
+        // GIVEN
+        when(sweetOfferRepo.findAll()).thenReturn(List.of());
+        // WHEN
+        List<SweetOffer> result = offerService.getAllSweetOffers();
+        // THEN
+        assertTrue(result.isEmpty());
+        verify(sweetOfferRepo, times(1)).findAll();
+        verifyNoMoreInteractions(sweetOfferRepo);
+        verifyNoInteractions(idService);
+        verifyNoInteractions(coldOfferRepo);
+        verifyNoInteractions(menuOfferRepo);
+        verifyNoInteractions(savoryOfferRepo);
+    }
 }
