@@ -1,4 +1,5 @@
-export type OfferCategory = "cold" | "menu" | "sweet" | "savory" | "special" | "party";
+export type PriceCategory = "cold" | "menu" | "sweet" | "savory"
+export type OfferCategory = PriceCategory | "special" | "party";
 
 // Um darüber iterieren zu können, brauche ich es als Array. Da Typen nur zur Compile-Zeit, aber nicht zur Laufzeit
 // existieren.
@@ -9,6 +10,12 @@ export const offerCategories: OfferCategory[] = [
     "savory",
     "special",
     "party",
+];
+export const priceCategories: PriceCategory[] = [
+    "cold",
+    "menu",
+    "sweet",
+    "savory",
 ];
 
 // Um Dopplungen in OfferPage und OfferDetail zu vermeiden
@@ -52,4 +59,13 @@ export const offerCategoryDescriptions: Record<OfferCategory, string> = {
         "labore et dolore magna aliqua."+
         " veniam, quis nostrud. Wiusmod tempor incididunt. Adipiscing elit, sed do eiusmod tempor incididunt ut" +
         "labore et dolore magna aliqua.",
+};
+
+export const offerCategoryPriceInfo: Record<OfferCategory, string> = {
+    cold: "Fingerfood, Streetfood und Salate: ca. 4 Gerichte für 18€ p.P. ab 20 Personen",
+    menu: "Festliche Menüs: ca. 43€ p.P. bei 50 Personen",
+    sweet: "Süße Auswahl aus cremigen Desserts, Kuchen und Schnitten: ca. 4 Gerichte für 18€ p.P. ab 20 Personen",
+    savory: "",
+    special: "",
+    party: "",
 };
