@@ -24,8 +24,9 @@ export default function OfferDetail(props: Readonly<OfferDetailProps>) {
             {/* Button-Komponente vom Typ Link ist besser für die Barrierefreiheit als Buttons und Links zu
             verschachteln. */}
             <Stack spacing={3} direction="row" sx={{py: 1.5}}>
-                <button className={"contactForm"}>
-                    <Link to={"/preise"}>Angebotsübersicht</Link>
+                {/* Bei Bedarf Zeilenumbruch mit automatischem Bindestrich. */}
+                <button className={"contactForm wordbreak"}>
+                    <Link to={"/preise"} lang={"de"}>Angebotsübersicht</Link>
                 </button>
                 <button className={"contactForm"}>
                     <Link to={"/kontakt"}>Individuelle Anfrage</Link>

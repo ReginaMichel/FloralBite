@@ -94,6 +94,12 @@ button.contactForm {
   font-weight: 600;
   width: auto;
 }
+.wordbreak a {
+  word-break: break-word;
+  hyphens: auto;
+  text-align: center;
+  display: inline-block;
+}
 button.contactForm:disabled {
   opacity: 0.5;
 }

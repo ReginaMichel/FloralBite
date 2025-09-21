@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -25,7 +26,10 @@ public class SecurityConfig {
 
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a -> a
-                        .requestMatchers("/api/admin").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/offers/cold").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/offers/menu").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/offers/savory").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/offers/sweet").hasAuthority("ADMIN")
                         .requestMatchers("/api/auth/me").authenticated()
                         .anyRequest().permitAll())
                 .logout(l -> l.logoutSuccessUrl(appUrl + "adminlogin"))
