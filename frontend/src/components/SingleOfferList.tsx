@@ -30,7 +30,7 @@ export default function SingleOfferList(props: Readonly<SingleOfferListProps>) {
                 .map((offer) => (
                 <Grid container>
                     <Grid size={{xs: 12, sm: 3}}>
-                        <p style={{fontWeight: "bold", margin: 0}}>{offer.name}</p>
+                        <p style={{fontWeight: "600", margin: 0}}>{offer.name}</p>
                     </Grid>
                     <Grid size={{xs: 12, sm: 9}}>
                         <p style={{margin: 0}}>{offer.description}</p>
