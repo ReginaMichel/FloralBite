@@ -1,5 +1,6 @@
-export type PriceCategory = "cold" | "menu" | "sweet" | "savory"
+export type PriceCategory = "cold" | "menu" | "sweet" | "savory";
 export type OfferCategory = PriceCategory | "special" | "party";
+export type PriceSubcategory = "FINGERFOOD" | "SALAD" | "DESSERT" | "CAKE";
 
 // Um darüber iterieren zu können, brauche ich es als Array. Da Typen nur zur Compile-Zeit, aber nicht zur Laufzeit
 // existieren.
@@ -10,12 +11,6 @@ export const offerCategories: OfferCategory[] = [
     "savory",
     "special",
     "party",
-];
-export const priceCategories: PriceCategory[] = [
-    "cold",
-    "menu",
-    "sweet",
-    "savory",
 ];
 
 // Um Dopplungen in OfferPage und OfferDetail zu vermeiden
