@@ -1,5 +1,6 @@
 import type {UserModel} from "../models/UserModel.ts";
-import {Link} from "react-router-dom";
+import AdminOfferForm from "../components/AdminOfferForm.tsx";
+import DesignBar from "../components/DesignBar.tsx";
 
 type AdminPageProps = {
     user: UserModel|undefined|null;
@@ -14,13 +15,18 @@ export default function AdminPage(props: Readonly<AdminPageProps>) {
     }
 
     return (
-        <div className={"textCentered"}>
-            <h1>{"Hallo " + props?.user?.firstName + ","}</h1>
-            <p>du bist erfolgreich auf der Admin-Seite gelandet. Hier gibt es aktuell noch
-                nicht viel zu sehen, aber du kannst dir gerne schon mal den aktuellen Stand der Website anschauen:</p>
-            <button className={"placeholder"}><Link to={"/home"}>Home</Link></button>
-            <p>Wenn du dich wieder ausloggen möchtest, kannst du das hier tun:</p>
-            <button className={"placeholder"} onClick={logout}>Abmelden</button>
-        </div>
+        <>
+            <h2>{"Hallo " + props?.user?.firstName + ","}</h2>
+            <p>schön dich zu sehen. Du bist erfolgreich auf der Admin-Seite gelandet.</p>
+            <ul className="icon-list snail">
+                <li>Wenn du runterscrollst, findest du die aktuellen Angebote deiner Webseite und kannst neue Einträge hinzufügen.</li>
+                <li>Über die Links in den Menüs gelangst du zur regulären Seite.</li>
+                <li>Wenn du dich wieder abmelden möchtest, kannst du das hier tun: <button className={"contactForm"} onClick={logout}
+                style={{marginLeft: "0.7rem"}}>Abmelden</button></li>
+                <li>Wenn du Fragen hast, kannst du dich gerne bei mir melden.</li>
+            </ul>
+            <DesignBar/>
+            <AdminOfferForm/>
+        </>
     );
 }
