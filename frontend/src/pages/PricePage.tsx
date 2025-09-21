@@ -1,8 +1,9 @@
 import {Link} from "react-router-dom";
 import {offerCategoryTitles, offerCategoryPriceInfo} from "../models/OfferCategory.ts";
-import SingleOfferList from "../components/SingleOfferList.tsx";
+import ColdOfferList from "../components/ColdOfferList.tsx";
 import MenuOfferList from "../components/MenuOfferList.tsx";
 import SavoryOfferList from "../components/SavoryOfferList.tsx";
+import SweetOfferList from "../components/SweetOfferList.tsx";
 import DesignBar from "../components/DesignBar.tsx";
 import {Box} from "@mui/material";
 
@@ -21,9 +22,9 @@ export default function PricePage() {
             <h3>{offerCategoryTitles["cold"]}</h3>
             <p>{offerCategoryPriceInfo["cold"]}</p>
             <h4>Fingerfood und Streetfood</h4>
-            <SingleOfferList cat={"cold"} subCat={"FINGERFOOD"}/>
+            <ColdOfferList subCat={"FINGERFOOD"}/>
             <h4>Salate</h4>
-            <SingleOfferList cat={"cold"} subCat={"SALAD"}/>
+            <ColdOfferList subCat={"SALAD"}/>
             <DesignBar/>
             <h3>{offerCategoryTitles["menu"]}</h3>
             <p>{offerCategoryPriceInfo["menu"]}</p>
@@ -36,9 +37,9 @@ export default function PricePage() {
             <h3>{offerCategoryTitles["sweet"]}</h3>
             <p>{offerCategoryPriceInfo["sweet"]}</p>
             <h4>Cremige Desserts</h4>
-            <SingleOfferList cat={"sweet"} subCat={"DESSERT"}/>
+            <SweetOfferList subCat={"DESSERT"}/>
             <h4>Kuchen und Schnitten</h4>
-            <SingleOfferList cat={"sweet"} subCat={"CAKE"}/>
+            <SweetOfferList subCat={"CAKE"}/>
             <DesignBar/>
             <h3>Weiteres Angebot</h3>
             <h4>Individuell für deine Veranstaltung</h4>

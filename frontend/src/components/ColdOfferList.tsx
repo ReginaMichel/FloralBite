@@ -2,20 +2,18 @@ import {type SingleOffer} from "../models/SingleOffer.ts";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Grid} from "@mui/material";
-import type {PriceCategory} from "../models/OfferCategory.ts";
 import type {PriceSubcategory} from "../models/OfferCategory.ts";
 
-type SingleOfferListProps = {
-    cat: PriceCategory;
+type ColdOfferListProps = {
     subCat: PriceSubcategory;
 }
 
-export default function SingleOfferList(props: Readonly<SingleOfferListProps>) {
+export default function ColdOfferList(props: Readonly<ColdOfferListProps>) {
     
     const [offers, setOffers] = useState<SingleOffer[]>([]);
     const loadOffers = () => {
         axios
-            .get("/api/offers/"+props.cat)
+            .get("/api/offers/cold")
             .then((response) => {
                 setOffers(response.data);
             })
