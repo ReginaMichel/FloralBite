@@ -1,5 +1,6 @@
 import OfferCard from "../components/OfferCard.tsx";
 import OfferDetail from "../components/OfferDetail.tsx";
+import ToPricePage from "../components/ToPricePage.tsx";
 import {Grid} from "@mui/material";
 import {useEffect, useRef, useState} from "react";
 import DesignBar from "../components/DesignBar.tsx";
@@ -35,6 +36,12 @@ export default function OfferPage() {
                     .map((cat) =>
                     (<Grid size={{xs: 6, sm: 6, md: 4, lg: 2}}><OfferCard type={cat} select={setSelected}/></Grid>))}
             </Grid>
+            {selected === undefined
+                ? <>
+                    <DesignBar/>
+                    <ToPricePage/>
+                </>
+                : null}
         </>
     )
 }

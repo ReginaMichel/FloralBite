@@ -10,7 +10,7 @@ export default function LoginPage() {
         <div>
             <img src={"/assets/Element 100@4x.webp"} alt={"Logo von Floral Bite"} className={"placeholderLogo"}/>
             <div className={"textCentered"}>
-                <h1>Hallo!</h1>
+                <h2>Hallo!</h2>
                 <p>Bitte klicke auf diesen Button, um dich über deinen Google-Account einzuloggen:</p>
                 <button className={"placeholder"} onClick={login}>Anmelden</button>
             </div>

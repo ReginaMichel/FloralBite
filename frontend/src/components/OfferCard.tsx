@@ -1,7 +1,7 @@
 import {type OfferCategory, offerCategoryTitles} from "../models/OfferCategory.ts";
 import {Box} from "@mui/material";
 import {useIsTouchDevice} from "../utils/useIsTouchDevice.ts";
-import {useState, type MouseEvent} from "react";
+import {useState, type MouseEvent, useEffect} from "react";
 
 type OfferCardProps = {
     type: OfferCategory;
@@ -33,6 +33,18 @@ export default function OfferCard(props: Readonly<OfferCardProps>) {
         event.stopPropagation();
         props.select(props.type);
     }
+    // Touch-Geräten soll sich die Karte nach 4 Sekunden von selbst wieder zurückdrehen. Damit User nicht mit den
+    // umgedrehten Karten festhängen und nicht mehr wissen, welche Kategorie es überhaupt war. :)
+    useEffect(() => {
+        if (isTouchDevice && flipped) {
+            const timeout = setTimeout(() => {
+                setFlipped(false);
+            }, 4000);
+            // Cleanup, falls die Komponente vorher schon zurückgedreht wird oder gar nicht mehr angezeigt wird.
+            // Damit der Timeout nicht mehr eintritt, wenn sie schon weg ist.
+            return () => clearTimeout(timeout);
+        }
+    }, [flipped, isTouchDevice]);
 
     return (
         <Box
