@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import {offerCategoryTitles, offerCategoryPriceInfo} from "../models/OfferCategory.ts";
 import SingleOfferList from "../components/SingleOfferList.tsx";
 import MenuOfferList from "../components/MenuOfferList.tsx";
+import SavoryOfferList from "../components/SavoryOfferList.tsx";
 import DesignBar from "../components/DesignBar.tsx";
 import {Box} from "@mui/material";
 
@@ -30,6 +31,7 @@ export default function PricePage() {
             <DesignBar/>
             <h3>{offerCategoryTitles["savory"]}</h3>
             <p>{offerCategoryPriceInfo["savory"]}</p>
+            <SavoryOfferList/>
             <DesignBar/>
             <h3>{offerCategoryTitles["sweet"]}</h3>
             <p>{offerCategoryPriceInfo["sweet"]}</p>
