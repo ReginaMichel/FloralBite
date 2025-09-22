@@ -34,6 +34,27 @@ export default function AdminOfferForm() {
         }
     }
 
+    const [sweetName, setSweetName] = useState<string>("");
+    const [sweetCategory, setSweetCategory] = useState<string>("");
+
+    const [sendingSweet, setSendingSweet] = useState<boolean>(false);
+
+    async function submitSweet(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setSendingSweet(true);
+        try {
+            await axios.post(`/api/offers/sweet`, {
+                name: sweetName,
+                category: sweetCategory,
+                description: ""
+            });
+        } finally {
+            setSweetName("");
+            setSweetCategory("");
+            setSendingSweet(false);
+        }
+    }
+
     return(
         <>
             <h2>Speisen auf der Angebotsseite</h2>
@@ -135,6 +156,69 @@ export default function AdminOfferForm() {
             <SweetOfferList subCat={"DESSERT"}/>
             <h4>Kuchen und Schnitten</h4>
             <SweetOfferList subCat={"CAKE"}/>
+            <h4>Süßpeise hinzufügen</h4>
+            <Box sx={{ position: 'relative' }}>
+                {/* Lade-Icon Overlay */}
+                {sendingSweet && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            inset: 0, // Kurzform für top/left/right/bottom: 0
+                            backgroundColor: 'rgba(255,255,255,0.7)', // halbtransparentes Weiß
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 10, // damit es definitiv über allem anderen liegt
+                        }}
+                    >
+                        <LoadingSpinner />
+                    </Box>
+                )}
+                <Stack component="form" spacing={2} noValidate onSubmit={submitSweet}>
+                    <TextField
+                        label="Kategorie"
+                        value={sweetCategory}
+                        onChange={(e) => setSweetCategory(e.target.value)}
+                        select
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                        required
+                    >
+                        <MenuItem value="DESSERT">Cremige Desserts</MenuItem>
+                        <MenuItem value="CAKE">Kuchen und Schnitten</MenuItem>
+                    </TextField>
+                    <TextField
+                        label="Name"
+                        value={sweetName}
+                        onChange={(e) => setSweetName(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <button disabled={sendingSweet} type="submit"
+                            className={"contactForm"}>{sendingSweet ? "Wird eingetragen…" : "Eintragen"}</button>
+                </Stack>
+            </Box>
         </>
     )
 }
