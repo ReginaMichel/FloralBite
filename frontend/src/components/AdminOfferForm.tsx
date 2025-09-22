@@ -14,9 +14,7 @@ export default function AdminOfferForm() {
     const [coldName, setColdName] = useState<string>("");
     const [coldCategory, setColdCategory] = useState<string>("");
     const [coldDescription, setColdDescription] = useState<string>("");
-
     const [sendingCold, setSendingCold] = useState<boolean>(false);
-
     async function submitCold(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setSendingCold(true);
@@ -34,11 +32,31 @@ export default function AdminOfferForm() {
         }
     }
 
+    const [savoryName, setSavoryName] = useState<string>("");
+    const [savorySavoryDishes, setSavorySavoryDishes] = useState<string>("");
+    const [savorySweetDishes, setSavorySweetDishes] = useState<string>("");
+    const [sendingSavory, setSendingSavory] = useState<boolean>(false);
+    async function submitSavory(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setSendingSavory(true);
+        try {
+            await axios.post(`/api/offers/savory`, {
+                name: savoryName,
+                savoryDishes: savorySavoryDishes.split(", "),
+                sweetDishes: savorySweetDishes.split(", "),
+                price: ""
+            });
+        } finally {
+            setSavoryName("");
+            setSavorySavoryDishes("");
+            setSavorySweetDishes("");
+            setSendingSavory(false);
+        }
+    }
+
     const [sweetName, setSweetName] = useState<string>("");
     const [sweetCategory, setSweetCategory] = useState<string>("");
-
     const [sendingSweet, setSendingSweet] = useState<boolean>(false);
-
     async function submitSweet(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         setSendingSweet(true);
@@ -81,7 +99,7 @@ export default function AdminOfferForm() {
                         <LoadingSpinner />
                     </Box>
                 )}
-                <Stack component="form" spacing={2} noValidate onSubmit={submitCold}>
+                <Stack component="form" spacing={1} noValidate onSubmit={submitCold}>
                     <TextField
                         label="Kategorie"
                         value={coldCategory}
@@ -150,6 +168,85 @@ export default function AdminOfferForm() {
             <DesignBar/>
             <h3>{offerCategoryTitles["savory"]}</h3>
             <SavoryOfferList/>
+            <h4>Süß und salzige Kombination hinzufügen</h4>
+            <Box sx={{ position: 'relative' }}>
+                {/* Lade-Icon Overlay */}
+                {sendingSavory && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            inset: 0, // Kurzform für top/left/right/bottom: 0
+                            backgroundColor: 'rgba(255,255,255,0.7)', // halbtransparentes Weiß
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 10, // damit es definitiv über allem anderen liegt
+                        }}
+                    >
+                        <LoadingSpinner />
+                    </Box>
+                )}
+                <Stack component="form" spacing={1} noValidate onSubmit={submitSavory}>
+                    <TextField
+                        label="Name"
+                        value={savoryName}
+                        onChange={(e) => setSavoryName(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Herzhaftes"
+                        placeholder="Herzhaftes (mit Komma und Leerzeichen getrennt)"
+                        value={savorySavoryDishes}
+                        onChange={(e) => setSavorySavoryDishes(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Süßspeisen"
+                        placeholder="Süßspeisen (mit Komma und Leerzeichen getrennt)"
+                        value={savorySweetDishes}
+                        onChange={(e) => setSavorySweetDishes(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <button disabled={sendingSavory} type="submit"
+                            className={"contactForm"}>{sendingSavory ? "Wird eingetragen…" : "Eintragen"}</button>
+                </Stack>
+            </Box>
             <DesignBar/>
             <h3>{offerCategoryTitles["sweet"]}</h3>
             <h4>Cremige Desserts</h4>
@@ -174,7 +271,7 @@ export default function AdminOfferForm() {
                         <LoadingSpinner />
                     </Box>
                 )}
-                <Stack component="form" spacing={2} noValidate onSubmit={submitSweet}>
+                <Stack component="form" spacing={1} noValidate onSubmit={submitSweet}>
                     <TextField
                         label="Kategorie"
                         value={sweetCategory}

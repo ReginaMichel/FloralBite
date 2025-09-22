@@ -86,7 +86,7 @@ button.contactForm {
   padding: 0.6rem 1.2rem;
   background-color: var(--light-sage-green);
   color: var(--dark-green);
-  border-radius: 0.4rem;
+  border-radius: 0.25rem;
   font-weight: 600;
   width: auto;
 }
