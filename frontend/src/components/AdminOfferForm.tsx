@@ -32,6 +32,31 @@ export default function AdminOfferForm() {
         }
     }
 
+    const [menuName, setMenuName] = useState<string>("");
+    const [menuStarters, setMenuStarters] = useState<string>("");
+    const [menuMainDishes, setMenuMainDishes] = useState<string>("");
+    const [menuDesserts, setMenuDesserts] = useState<string>("");
+    const [sendingMenu, setSendingMenu] = useState<boolean>(false);
+    async function submitMenu(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        setSendingMenu(true);
+        try {
+            await axios.post(`/api/offers/menu`, {
+                name: menuName,
+                starters: menuStarters.split(", "),
+                mainDishes: menuMainDishes.split(", "),
+                desserts: menuDesserts.split(", "),
+                price: ""
+            });
+        } finally {
+            setMenuName("");
+            setMenuStarters("");
+            setMenuMainDishes("");
+            setMenuDesserts("");
+            setSendingMenu(false);
+        }
+    }
+
     const [savoryName, setSavoryName] = useState<string>("");
     const [savorySavoryDishes, setSavorySavoryDishes] = useState<string>("");
     const [savorySweetDishes, setSavorySweetDishes] = useState<string>("");
@@ -165,6 +190,104 @@ export default function AdminOfferForm() {
             <DesignBar/>
             <h3>{offerCategoryTitles["menu"]}</h3>
             <MenuOfferList/>
+            <h4>Festliches Menü hinzufügen</h4>
+            <Box sx={{ position: 'relative' }}>
+                {/* Lade-Icon Overlay */}
+                {sendingMenu && (
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            inset: 0, // Kurzform für top/left/right/bottom: 0
+                            backgroundColor: 'rgba(255,255,255,0.7)', // halbtransparentes Weiß
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 10, // damit es definitiv über allem anderen liegt
+                        }}
+                    >
+                        <LoadingSpinner />
+                    </Box>
+                )}
+                <Stack component="form" spacing={1} noValidate onSubmit={submitMenu}>
+                    <TextField
+                        label="Name"
+                        value={menuName}
+                        onChange={(e) => setMenuName(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Vorspeisen"
+                        placeholder="Vorspeisen (mit Komma und Leerzeichen getrennt)"
+                        value={menuStarters}
+                        onChange={(e) => setMenuStarters(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Hauptspeisen"
+                        placeholder="Hauptspeisen (mit Komma und Leerzeichen getrennt)"
+                        value={menuMainDishes}
+                        onChange={(e) => setMenuMainDishes(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <TextField
+                        label="Desserts"
+                        placeholder="Desserts (mit Komma und Leerzeichen getrennt)"
+                        value={menuDesserts}
+                        onChange={(e) => setMenuDesserts(e.target.value)}
+                        required
+                        fullWidth
+                        sx={{
+                            '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--dark-green)',
+                            },
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'var(--sage-green)',
+                            },
+                            '& label.Mui-focused': {
+                                color: 'var(--sage-green)',
+                            },
+                        }}
+                    />
+                    <button disabled={sendingMenu} type="submit"
+                            className={"contactForm"}>{sendingMenu ? "Wird eingetragen…" : "Eintragen"}</button>
+                </Stack>
+            </Box>
             <DesignBar/>
             <h3>{offerCategoryTitles["savory"]}</h3>
             <SavoryOfferList/>
